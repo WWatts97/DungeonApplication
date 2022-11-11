@@ -70,7 +70,7 @@
         public string Name { get; set; }
         public int BonusHitChance { get; set; }
         public bool IsTwoHanded { get; set; }
-        public enum WeaponType { }
+        public WeaponType Type { get; set; }
         public int MinDamage
         {
             get { return _minDamage; }
@@ -87,9 +87,10 @@
             }
         }
         //ctors
-        public Weapon(string name, int maxDamage, int minDamage, int bonusHitChance, bool isTwoHanded)
+        public Weapon(string name, WeaponType type, int maxDamage, int minDamage, int bonusHitChance, bool isTwoHanded)
         {
             Name = name;
+            Type = type;
             MaxDamage = maxDamage;
             MinDamage = minDamage;
             BonusHitChance = bonusHitChance;
@@ -99,6 +100,7 @@
         public override string ToString()
         {
             return string.Format("Weapon Name: {0}\n" +
+                "Weapon Type: {5}\n" +
                 "Max Damage: {1}\n" +
                 "Min Damage: {2}\n" +
                 "Bonus Hit Chance: {3}\n" +
@@ -107,7 +109,8 @@
                 MaxDamage,
                 MinDamage,
                 BonusHitChance,
-                IsTwoHanded);
+                IsTwoHanded,
+                Type);
         }
     }//end wepaon class
 }

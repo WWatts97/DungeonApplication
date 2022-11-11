@@ -20,13 +20,6 @@ namespace Dungeon_Library
         Gnome,
         Demon
     }
-        //8. Update the Weapon class to use the WeaponType enum
-
-        //a. Add a field/property for Type with is of data type WeaponType
-
-        //b.Add Type to the FQCTOR
-
-        //c.Add Type to the ToString()
     public enum WeaponType
     {
         Sword,
