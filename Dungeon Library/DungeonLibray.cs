@@ -25,6 +25,9 @@
             }
         }
         //ctors
+
+        public Character() { }
+
         public Character(string name, int hitChance, int block, int maxLife, int life)
         {
             Name = name;
