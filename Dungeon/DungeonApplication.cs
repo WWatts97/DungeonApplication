@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,16 +11,19 @@ namespace Dungeon
     {
         static void Main(string[] args)
         {
-            //TODO Create a player
+            //TODO welcome to the dungeon
+
+            //TODO Create a player object
 
             //bool counterMainLoop = true;
+
+            //    bool counterInnerLoop = true;
 
             //do
             //{
             //    //TODO Create a Monster
             Console.WriteLine(GetRoom());
 
-            //    bool counterInnerLoop = true;
 
             //    //do
             //    //{
@@ -42,7 +46,9 @@ namespace Dungeon
             //    } while (counterInnerLoop);
 
             //} while (counterMainLoop);
+            
         }//end main
+        
 
         private static string GetRoom()
         {
@@ -53,8 +59,8 @@ namespace Dungeon
                 "You are blinded. The room is so bright it cannot contain it all.",
                 "This room is smelly. That's it.",
             };
-            Random rng = new Random();
-            int roomDescRandom = rng.Next(roomDescriptions.Length);
+            Random rollRoom = new Random();
+            int roomDescRandom = rollRoom.Next(roomDescriptions.Length);
             return $"{roomDescriptions[roomDescRandom]}";
             
         }//end GetRoom()

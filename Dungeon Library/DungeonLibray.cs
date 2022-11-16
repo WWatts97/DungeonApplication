@@ -18,7 +18,7 @@
                 {
                     _life = value;
                 }
-                else
+                else if (value > MaxLife) 
                 {
                     _life = MaxLife;
                 }
@@ -33,19 +33,19 @@
             MaxLife = maxLife;
             Life = life;
         }
-        //    //methods
-        //    //TODO public decimal CalcBlock()
-        //    {
-
-        //    }
-        //    //TODO public decimal CalcHitChance()
-        //    {
-
-        //    }
-        //    //TODO public decimal CalcDamage() 
-        //    { 
-
-        //    }
+        //methods
+        public virtual decimal CalcBlock()
+            {
+            return Block;
+            }
+        public virtual int CalcHitChance()
+            {
+            return HitChance;
+            }
+        public virtual int CalcDamage() 
+            {
+            return 0;
+            }
         public override string ToString()
         {
             return string.Format("Character Name: {0}\n" +
@@ -80,7 +80,7 @@
                 {
                     _minDamage = value;
                 }
-                else
+                else if (_minDamage > MaxDamage)
                 {
                     _minDamage = MaxDamage;
                 }
