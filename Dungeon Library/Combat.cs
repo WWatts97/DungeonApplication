@@ -47,6 +47,22 @@ namespace Dungeon_Library
             {
                 DoAttack(monster, player);
             }
+            if (player.Life > 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine($"{player.Name} has {player.Life} life, out of {player.MaxLife} remaining!");
+            }
+            else
+            {
+                Console.WriteLine($"{player.Name} has died!");
+            }
+            if (monster.Life > 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine($"{monster.Name} has {monster.Life} life, out of {monster.MaxLife} remaining!");
+            }
+           
+            Console.ResetColor();
         }
     }
 }

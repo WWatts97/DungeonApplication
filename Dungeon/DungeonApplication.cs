@@ -148,30 +148,83 @@ namespace Dungeon
             bool playerIsAlive = true;//counter for gameplayloop
             bool playerIsFighting = true;//counter for the combat loop
 
+            int lvlUp1 = 0;
+            int lvlUp2 = 0;
+            int lvlUp3 = 0;
+
             do//start of gameplay loop
             {
-                
+
                 //TODO fix unlimited levelup bug
-                Console.ForegroundColor= ConsoleColor.Yellow;
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 switch (score)
                 {
+                    //Examples of stat increases
                     case 3:
-                        Console.WriteLine("You leveled up!");
-                        player.MaxLife += 50;
-                        player.Life = player.MaxLife;
+                        for (int i = 0; lvlUp1 < 1; lvlUp1++)
+                        {
+                            Console.WriteLine("\nYou leveled up!\nYour maximum life has increased and been refilled!");
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                            Console.WriteLine($"{player.Name} has {player.Life} life, out of {player.MaxLife} remaining!");
+                            player.MaxLife += 50;//Increase their maximum life.
+                            player.Life = player.MaxLife;//Refill their life.
+                            Console.ResetColor();
+                        }
                         break;
                     case 6:
-                        Console.WriteLine("You leveled up!");
-                        player.MaxLife += 50;
-                        player.Life = player.MaxLife;
+                        for (int i = 0; lvlUp2 < 1; lvlUp2++)
+                        {
+                            Console.WriteLine("\nYou leveled up!\nYour maximum life has increased and been refilled!");
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                            Console.WriteLine($"{player.Name} has {player.Life} life, out of {player.MaxLife} remaining!");
+                            player.MaxLife += 50;//Increase their maximum life.
+                            player.Life = player.MaxLife;//Refill their life.
+                            Console.ResetColor();
+                        }
                         break;
+                    //Example of loot drop
                     case 10:
-                        Weapon sword2 = new Weapon("Sword", WeaponType.Sword, 10, 5, 10, false);
-                       //TODO wepaon loot?
+                        for (int i = 0; lvlUp3 < 1; lvlUp3++)
+                        {
+                            if (player.EquippedWeapon == sword1)
+                            {
+                                Weapon sword2 = new Weapon("Sword", WeaponType.Sword, 10, 5, 10, false);
+
+                                Console.WriteLine("\nYou found the Master Sword!");
+                                player.EquippedWeapon = sword2;
+                            }
+                            else if (player.EquippedWeapon == knife1)
+                            {
+                                Weapon knife2 = new Weapon("Sword", WeaponType.Knife, 10, 5, 10, false);
+
+                                Console.WriteLine("\nYou found the Master Sword!");
+                                player.EquippedWeapon = knife2;
+                            }
+                            else if (player.EquippedWeapon == axe1)
+                            {
+                                Weapon axe2 = new Weapon("Sword", WeaponType.Axe, 10, 5, 10, false);
+
+                                Console.WriteLine("\nYou found the Master Sword!");
+                                player.EquippedWeapon = axe2;
+                            }
+                            else if (player.EquippedWeapon == bow1)
+                            {
+                                Weapon bow2 = new Weapon("Sword", WeaponType.Bow, 10, 5, 10, false);
+
+                                Console.WriteLine("\nYou found the Master Sword!");
+                                player.EquippedWeapon = bow2;
+                            }
+                            else if (player.EquippedWeapon == lightsaber1)
+                            {
+                                Weapon lightsaber2 = new Weapon("Sword", WeaponType.Lightsaber, 10, 5, 10, false);
+
+                                Console.WriteLine("\nYou found the Master Sword!");
+                                player.EquippedWeapon = lightsaber2;
+                            }
+                           
+                        }
                         break;
-                    case 15:
-                        break;
-                }
+                };
 
                 Console.ResetColor();
                 //any code in this loop will execute when the player kills a monster
@@ -218,7 +271,7 @@ namespace Dungeon
                 int randomNbr = rand.Next(monsters.Length);
                 Monster monster = monsters[randomNbr];
 
-                Console.WriteLine("You encountered {0}!", monster.Name);
+                Console.WriteLine("\nYou encountered {0}!", monster.Name);
 
                 #endregion
 
