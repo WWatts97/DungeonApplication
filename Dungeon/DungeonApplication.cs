@@ -20,12 +20,58 @@ namespace Dungeon
             //Store the user input in a string.
             string playerName = Console.ReadLine();
 
+
+
             //Construct the Player's weapon:
-            Weapon weapon = new Weapon("Sword", WeaponType.Sword, 10,5,10,false);
+            Weapon sword1 = new Weapon("Sword", WeaponType.Sword, 10,5,10,false);
+            Weapon knife1 = new Weapon("Knife", WeaponType.Knife, 10, 5, 10, false);
+            Weapon axe1 = new Weapon("Axe", WeaponType.Axe, 10, 5, 10, false);
+            Weapon bow1 = new Weapon("Bow", WeaponType.Bow, 10, 5, 10, false);
+            Weapon lightsaber1 = new Weapon("Lightsaber", WeaponType.Lightsaber, 10, 5, 10, false);
+
+            bool playerIsChoosingWeapon = true;
+            Weapon chosenWeapon;
+
+            Player player = new Player(playerName, 70, 5, 100, 100, Race.Human, sword1);
+            do
+            {
+                Console.WriteLine("\n Choose your weapon:\n" + "(S) Sword\n" + "(K) Knife\n" + "(A) Axe\n" + "(B) Bow\n" + "(L) Lightsaber");
+
+                ConsoleKey userKey = Console.ReadKey().Key;
+
+                switch (userKey)
+                {
+                    case ConsoleKey.S:
+                        player.EquippedWeapon = sword1;
+                        playerIsChoosingWeapon = false;
+                        break;
+                    case ConsoleKey.K:
+                        player.EquippedWeapon = knife1;
+                        playerIsChoosingWeapon = false;
+                        break;
+                        case ConsoleKey.A:
+                        player.EquippedWeapon = axe1;
+                        playerIsChoosingWeapon = false;
+                        break;
+                        case ConsoleKey.B:
+                        player.EquippedWeapon = bow1;
+                        playerIsChoosingWeapon = false;
+                        break;
+                        case ConsoleKey.L:
+                        player.EquippedWeapon = lightsaber1;
+                        playerIsChoosingWeapon = false;
+                        break;
+                    default:
+                        Console.WriteLine("Input not understood. Please try again.");
+                        break;
+                }
+            } while (playerIsChoosingWeapon);
+
+           
 
             //Construct the Player object:
             //NOTE: Pass in the user input string as the Name for the Player.
-            Player player = new Player(playerName, 70, 5, 100, 100, Race.Human, weapon);
+           
 
             #endregion
 
