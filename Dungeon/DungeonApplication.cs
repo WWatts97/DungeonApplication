@@ -37,11 +37,12 @@ namespace Dungeon
 
             #region Gameplay Loop
 
-            bool isPlaying = true;
-            bool isFighting = true;
+            bool playerIsAlive = true;//counter for gameplayloop
+            bool playerIsFighting = true;//counter for the combat loop
 
-            do
+            do//start of gameplay loop
             {
+                //any code in this loop will execute when the player kills a monster
 
                 #region Create Room & Monster
 
@@ -111,7 +112,7 @@ namespace Dungeon
                             break;
                         case "R":
                             Console.WriteLine("Running away!");
-                            isFighting = false;
+                            playerIsFighting = false;
                             break;
                         case "P":
                             //Because we have an override of the ToString() method on our Player class,
@@ -123,18 +124,28 @@ namespace Dungeon
                             //TODO: Print Monster stats. (ToString() method)
                             break;
                         case "Q":
-                            isFighting = false;
-                            isPlaying = false;
+                            playerIsFighting = false;
+                            playerIsAlive = false;
                             break;
                         default:
                             Console.WriteLine("Input invalid. Please type a letter from the Menu below and press Enter.");
                             break;
                     }
 
-                } while (isFighting);
+                    #region Check player life
+
+                    if (player.Life <= 0)
+                    {
+                        Console.WriteLine("Game over!");
+                        playerIsFighting = false;
+                        playerIsAlive = false;
+                    }
+                    #endregion
+
+                } while (playerIsFighting);
 
                 #endregion
-            } while (isPlaying);
+            } while (playerIsAlive);
 
             #endregion
 
