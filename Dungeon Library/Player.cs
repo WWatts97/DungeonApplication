@@ -26,7 +26,7 @@ namespace Dungeon_Library
             string raceDescription = "";
 
             switch (Race)
-            {
+            {//TODO race desc
                 case Race.Elf:
                     raceDescription = "";
                     break;
