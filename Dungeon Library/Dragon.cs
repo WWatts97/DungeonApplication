@@ -11,9 +11,9 @@ namespace DungeonLibrary
     {
         public int FireBreath;
 
-        public Dragon(string name, string description, int life, int maxLife, int hitChance, int block,
+        public Dragon(string name, string description,  int maxLife, int life, int hitChance, int block,
             int minDmg, int maxDmg, int fireBreath)
-            : base(name, description, hitChance, block, life, maxLife, minDmg, maxDmg)
+            : base(name, description, hitChance, block,  maxLife, life, minDmg, maxDmg)
         {
             FireBreath = fireBreath;
         }
@@ -22,8 +22,8 @@ namespace DungeonLibrary
         {
             Name = "Dragon";
             Description = "The giant ancient lizard fills you with dispair. This is the end.";
-            Life = 100;
             MaxLife = 100;
+            Life = 100;
             HitChance = 100;
             Block = 0;
             MinDmg = 5;

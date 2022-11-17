@@ -94,6 +94,7 @@ namespace Dungeon
 
                 do
                 {
+                    playerIsFighting = true;
                     Console.WriteLine("\nChoose an action:\n" +
                         "A) Attack\n" +
                         "R) Run Away\n" +
@@ -108,10 +109,22 @@ namespace Dungeon
                     switch (fightingChoice.ToUpper())
                     {
                         case "A":
-                            //TODO: Combat Methods.
+                            Combat.DoBattle(player, monster);
+
+                            //check monster life
+                            if (monster.Life <= 0)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.WriteLine("\nYou killed {0}", monster.Name);
+                                Console.ResetColor();
+                                score++;
+                                playerIsFighting = false;
+                            }
                             break;
                         case "R":
                             Console.WriteLine("Running away!");
+                            Console.WriteLine($"{monster.Name} attacks you as you flee!");
+                            Combat.DoAttack(monster, player);
                             playerIsFighting = false;
                             break;
                         case "P":
@@ -136,7 +149,7 @@ namespace Dungeon
 
                     if (player.Life <= 0)
                     {
-                        Console.WriteLine("Game over!");
+                        Console.WriteLine("Game over! Better luck next time!");
                         playerIsFighting = false;
                         playerIsAlive = false;
                     }

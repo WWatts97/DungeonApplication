@@ -14,9 +14,9 @@ namespace DungeonLibrary
         public bool IsFluffy { get; set; }
 
         //Make sure to add that unique property to the inherited properties in the parameters.
-        public Bunny(string name, string description, int life, int maxLife, int hitChance, int block,
+        public Bunny(string name, string description,  int maxLife, int life, int hitChance, int block,
             int minDmg, int maxDmg, bool isFluffy)
-            : base(name, description, hitChance, block, life, maxLife, minDmg, maxDmg)
+            : base(name, description, hitChance, block, maxLife, life, minDmg, maxDmg)
         //Use the base constructor to assign the inherited properties.
         {
             IsFluffy = isFluffy;//Assign the unique property.
@@ -27,8 +27,8 @@ namespace DungeonLibrary
         {
             Name = "White Rabbit";
             Description = "Well, that's no ordinary rabbit! That's the most foul, cruel, and bad-tempered rodent you ever set eyes on!";
-            Life = 100;
             MaxLife = 100;
+            Life = 100;
             HitChance = 100;
             Block = 0;
             MinDmg = 5;
