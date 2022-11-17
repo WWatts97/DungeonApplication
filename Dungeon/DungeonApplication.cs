@@ -67,11 +67,60 @@ namespace Dungeon
                 }
             } while (playerIsChoosingWeapon);
 
-           
+            bool playerIsChoosingRace = true;
+
+            do
+            {
+                Console.WriteLine("\nChoose a Race:" +
+                "\n(E) Elf" +
+                "\n(H) Human" +
+                "\n(M) Merfolk" +
+                "\n(D) Demon" +
+                "\n(G) Gnome" +
+                "\n(T) Troll");
+
+                ConsoleKey raceCoice = Console.ReadKey().Key;
+                Console.Clear();
+
+                switch (raceCoice)
+                {
+                    case ConsoleKey.E:
+                        player.Race = Race.Elf;
+                        playerIsChoosingRace = false;
+                        //TODO custom attributes for each class
+                        break;
+                        case ConsoleKey.H:
+                        player.Race = Race.Human;
+                        playerIsChoosingRace = false;
+                        break;
+                        case ConsoleKey.M:
+                        player.Race = Race.Merfolk;
+                        playerIsChoosingRace = false;
+                        break;
+                        case ConsoleKey.D:
+                        player.Race = Race.Demon;
+                        playerIsChoosingRace = false;
+                        break;
+                        case ConsoleKey.G:
+                        player.Race = Race.Gnome;
+                        playerIsChoosingRace = false;
+                        break;
+                        case ConsoleKey.T:
+                        player.Race = Race.Troll;
+                        playerIsChoosingRace = false;
+                        break;
+                    default:
+                        Console.WriteLine("Input not understood. Please try again.");
+                        break;
+                }
+            } while (playerIsChoosingRace);
+
+            
+
 
             //Construct the Player object:
             //NOTE: Pass in the user input string as the Name for the Player.
-           
+
 
             #endregion
 

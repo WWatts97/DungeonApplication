@@ -28,26 +28,26 @@ namespace Dungeon_Library
             switch (Race)
             {//TODO race desc
                 case Race.Elf:
-                    raceDescription = "";
+                    raceDescription = "Elf";
                     break;
                 case Race.Human:
-                    raceDescription = "";
+                    raceDescription = "Human";
                     break;
                 case Race.Merfolk:
-                    raceDescription = "";
+                    raceDescription = "Merfolk";
                     break;
                 case Race.Troll:
-                    raceDescription = "";
+                    raceDescription = "Troll";
                     break;
                 case Race.Gnome:
-                    raceDescription = "";
+                    raceDescription = "Gnome";
                     break;
                 case Race.Demon:
-                    raceDescription = "";
+                    raceDescription = "Demon";
                     break;
             }
 
-            return base.ToString()+ "\nDescription: " + raceDescription + "\nWeapon : " + EquippedWeapon;
+            return base.ToString()+ "\nDescription: " + raceDescription + "\nWeapon : " + EquippedWeapon + "Race: "+ Race;
         }
 
         public override int CalcDamage()
