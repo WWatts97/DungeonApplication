@@ -9,6 +9,19 @@ namespace Dungeon
         {
             #region Introduction
             Console.WriteLine("\n--== The Dragon's Dungeon ==--\n");
+
+            Console.WriteLine(@"
+                 \||/
+                |  @___oo
+      /\  /\   / (__,,,,|
+     ) /^\) ^\/ _)
+     )   /^\/   _)
+     )   _ /  / _)
+ /\  )/\/ ||  | )_)
+<  >      |(,,) )__)
+ ||      /    \)___)\
+ | \____(      )___) )___
+  \______(_______;;; __;;;");
             #endregion
 
             #region Create Player
@@ -137,6 +150,28 @@ namespace Dungeon
 
             do//start of gameplay loop
             {
+                bool isFirstLoop = true;
+
+                Console.ForegroundColor= ConsoleColor.Yellow;
+                switch (score)
+                {
+                    case 3:
+                        Console.WriteLine("You leveled up!");
+                        player.MaxLife += 50;
+                        player.Life = player.MaxLife;
+                        break;
+                    case 6:
+                        Console.WriteLine("You leveled up!");
+                        player.MaxLife += 50;
+                        player.Life = player.MaxLife;
+                        break;
+                    case 10:
+                        Weapon sword2 = new Weapon("Sword", WeaponType.Sword, 10, 5, 10, false);
+                       //TODO wepaon loot?
+                        break;
+                    case 15:
+                        break;
+                }
                 //any code in this loop will execute when the player kills a monster
 
                 #region Create Room & Monster
@@ -258,6 +293,7 @@ namespace Dungeon
             #endregion
 
             Console.WriteLine("Thanks for playing!");
+            Console.WriteLine("\n Score: {0}", score);
 
         }//end Main()
 

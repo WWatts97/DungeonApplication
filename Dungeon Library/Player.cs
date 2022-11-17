@@ -47,7 +47,7 @@ namespace Dungeon_Library
                     break;
             }
 
-            return base.ToString()+ "\nDescription: " + raceDescription + "\nWeapon : " + EquippedWeapon + "Race: "+ Race;
+            return base.ToString()+ "\nDescription: " + raceDescription + "\nWeapon : " + EquippedWeapon + "\nRace: "+ Race;
         }
 
         public override int CalcDamage()
