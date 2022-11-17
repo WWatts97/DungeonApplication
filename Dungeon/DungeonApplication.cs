@@ -150,8 +150,8 @@ namespace Dungeon
 
             do//start of gameplay loop
             {
-                bool isFirstLoop = true;
-
+                
+                //TODO fix unlimited levelup bug
                 Console.ForegroundColor= ConsoleColor.Yellow;
                 switch (score)
                 {
@@ -172,6 +172,8 @@ namespace Dungeon
                     case 15:
                         break;
                 }
+
+                Console.ResetColor();
                 //any code in this loop will execute when the player kills a monster
 
                 #region Create Room & Monster
@@ -264,7 +266,7 @@ namespace Dungeon
                             Console.WriteLine(player);
                             break;
                         case "M":
-                            //TODO: Print Monster stats. (ToString() method)
+                            Console.WriteLine(monster);
                             break;
                         case "Q":
                             playerIsFighting = false;
