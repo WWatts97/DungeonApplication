@@ -37,7 +37,7 @@
             Life = life;
         }
         //methods
-        public virtual decimal CalcBlock()
+        public virtual int CalcBlock()
             {
             return Block;
             }
