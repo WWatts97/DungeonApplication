@@ -11,9 +11,9 @@ namespace DungeonLibrary
     {
         public bool IsEquipped { get; set; }
 
-        public Goblin(string name, string description, int life, int maxLife, int hitChance, int block,
+        public Goblin(string name, string description,  int maxLife, int life, int hitChance, int block,
             int minDmg, int maxDmg, bool isEquipped)
-            : base(name, description, hitChance, block, life, maxLife, minDmg, maxDmg)
+            : base(name, description, hitChance, block,  maxLife, life, minDmg, maxDmg)
         {
             IsEquipped = isEquipped;
         }
@@ -22,8 +22,8 @@ namespace DungeonLibrary
         {
             Name = "Goblin";
             Description = "Ugly, tiny, and dangerous!";
-            Life = 100;
             MaxLife = 100;
+            Life = 100;
             HitChance = 100;
             Block = 0;
             MinDmg = 5;

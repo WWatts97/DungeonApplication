@@ -9,9 +9,23 @@ namespace Dungeon
         {
             #region Introduction
             Console.WriteLine("\n--== The Dragon's Dungeon ==--\n");
+
+            Console.WriteLine(@"
+                 \||/
+                |  @___oo
+      /\  /\   / (__,,,,|
+     ) /^\) ^\/ _)
+     )   /^\/   _)
+     )   _ /  / _)
+ /\  )/\/ ||  | )_)
+<  >      |(,,) )__)
+ ||      /    \)___)\
+ | \____(      )___) )___
+  \______(_______;;; __;;;");
             #endregion
 
             #region Create Player
+
 
             //Prompt the user to input their name:
             Console.WriteLine("What is your name?");
@@ -19,22 +33,148 @@ namespace Dungeon
             //Store the user input in a string.
             string playerName = Console.ReadLine();
 
+
+
             //Construct the Player's weapon:
-            Weapon weapon = new Weapon("Sword", WeaponType.Sword, 10,5,10,false);
+            Weapon sword1 = new Weapon("Sword", WeaponType.Sword, 10,5,10,false);
+            Weapon knife1 = new Weapon("Knife", WeaponType.Knife, 10, 5, 10, false);
+            Weapon axe1 = new Weapon("Axe", WeaponType.Axe, 10, 5, 10, false);
+            Weapon bow1 = new Weapon("Bow", WeaponType.Bow, 10, 5, 10, false);
+            Weapon lightsaber1 = new Weapon("Lightsaber", WeaponType.Lightsaber, 10, 5, 10, false);
 
-            //Construct the Player object:
-            //NOTE: Pass in the user input string as the Name for the Player.
-            Player player = new Player(playerName, 70, 5, 100, 100, Race.Human, weapon);
+            bool playerIsChoosingWeapon = true;
+            Weapon chosenWeapon;
 
-            #endregion
+            Player player = new Player(playerName, 70, 5, 100, 100, Race.Human, sword1);
+            do
+            {
+                Console.WriteLine("\n Choose your weapon:\n" + "(S) Sword\n" + "(K) Knife\n" + "(A) Axe\n" + "(B) Bow\n" + "(L) Lightsaber");
 
-            #region Gameplay Loop
+                ConsoleKey userKey = Console.ReadKey().Key;
 
-            bool isPlaying = true;
-            bool isFighting = true;
+                switch (userKey)
+                {
+                    case ConsoleKey.S:
+                        player.EquippedWeapon = sword1;
+                        playerIsChoosingWeapon = false;
+                        break;
+                    case ConsoleKey.K:
+                        player.EquippedWeapon = knife1;
+                        playerIsChoosingWeapon = false;
+                        break;
+                        case ConsoleKey.A:
+                        player.EquippedWeapon = axe1;
+                        playerIsChoosingWeapon = false;
+                        break;
+                        case ConsoleKey.B:
+                        player.EquippedWeapon = bow1;
+                        playerIsChoosingWeapon = false;
+                        break;
+                        case ConsoleKey.L:
+                        player.EquippedWeapon = lightsaber1;
+                        playerIsChoosingWeapon = false;
+                        break;
+                    default:
+                        Console.WriteLine("Input not understood. Please try again.");
+                        break;
+                }
+            } while (playerIsChoosingWeapon);
+
+            bool playerIsChoosingRace = true;
 
             do
             {
+                Console.WriteLine("\nChoose a Race:" +
+                "\n(E) Elf" +
+                "\n(H) Human" +
+                "\n(M) Merfolk" +
+                "\n(D) Demon" +
+                "\n(G) Gnome" +
+                "\n(T) Troll");
+
+                ConsoleKey raceCoice = Console.ReadKey().Key;
+                Console.Clear();
+
+                switch (raceCoice)
+                {
+                    case ConsoleKey.E:
+                        player.Race = Race.Elf;
+                        playerIsChoosingRace = false;
+                        //TODO custom attributes for each class
+                        break;
+                        case ConsoleKey.H:
+                        player.Race = Race.Human;
+                        playerIsChoosingRace = false;
+                        break;
+                        case ConsoleKey.M:
+                        player.Race = Race.Merfolk;
+                        playerIsChoosingRace = false;
+                        break;
+                        case ConsoleKey.D:
+                        player.Race = Race.Demon;
+                        playerIsChoosingRace = false;
+                        break;
+                        case ConsoleKey.G:
+                        player.Race = Race.Gnome;
+                        playerIsChoosingRace = false;
+                        break;
+                        case ConsoleKey.T:
+                        player.Race = Race.Troll;
+                        playerIsChoosingRace = false;
+                        break;
+                    default:
+                        Console.WriteLine("Input not understood. Please try again.");
+                        break;
+                }
+            } while (playerIsChoosingRace);
+
+            
+
+
+            //Construct the Player object:
+            //NOTE: Pass in the user input string as the Name for the Player.
+
+
+            #endregion
+
+
+            //track the score:
+            int score = 0;
+            //we will update this score whenever the player defeats a monster.
+            //the display the score to the player when they exit thw game.
+
+            #region Gameplay Loop
+
+            bool playerIsAlive = true;//counter for gameplayloop
+            bool playerIsFighting = true;//counter for the combat loop
+
+            do//start of gameplay loop
+            {
+                
+                //TODO fix unlimited levelup bug
+                Console.ForegroundColor= ConsoleColor.Yellow;
+                switch (score)
+                {
+                    case 3:
+                        Console.WriteLine("You leveled up!");
+                        player.MaxLife += 50;
+                        player.Life = player.MaxLife;
+                        break;
+                    case 6:
+                        Console.WriteLine("You leveled up!");
+                        player.MaxLife += 50;
+                        player.Life = player.MaxLife;
+                        break;
+                    case 10:
+                        Weapon sword2 = new Weapon("Sword", WeaponType.Sword, 10, 5, 10, false);
+                       //TODO wepaon loot?
+                        break;
+                    case 15:
+                        break;
+                }
+
+                Console.ResetColor();
+                //any code in this loop will execute when the player kills a monster
 
                 #region Create Room & Monster
 
@@ -86,6 +226,7 @@ namespace Dungeon
 
                 do
                 {
+                    playerIsFighting = true;
                     Console.WriteLine("\nChoose an action:\n" +
                         "A) Attack\n" +
                         "R) Run Away\n" +
@@ -100,11 +241,23 @@ namespace Dungeon
                     switch (fightingChoice.ToUpper())
                     {
                         case "A":
-                            //TODO: Combat Methods.
+                            Combat.DoBattle(player, monster);
+
+                            //check monster life
+                            if (monster.Life <= 0)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.WriteLine("\nYou killed {0}", monster.Name);
+                                Console.ResetColor();
+                                score++;
+                                playerIsFighting = false;
+                            }
                             break;
                         case "R":
                             Console.WriteLine("Running away!");
-                            isFighting = false;
+                            Console.WriteLine($"{monster.Name} attacks you as you flee!");
+                            Combat.DoAttack(monster, player);
+                            playerIsFighting = false;
                             break;
                         case "P":
                             //Because we have an override of the ToString() method on our Player class,
@@ -113,25 +266,36 @@ namespace Dungeon
                             Console.WriteLine(player);
                             break;
                         case "M":
-                            //TODO: Print Monster stats. (ToString() method)
+                            Console.WriteLine(monster);
                             break;
                         case "Q":
-                            isFighting = false;
-                            isPlaying = false;
+                            playerIsFighting = false;
+                            playerIsAlive = false;
                             break;
                         default:
                             Console.WriteLine("Input invalid. Please type a letter from the Menu below and press Enter.");
                             break;
                     }
 
-                } while (isFighting);
+                    #region Check player life
+
+                    if (player.Life <= 0)
+                    {
+                        Console.WriteLine("Game over! Better luck next time!");
+                        playerIsFighting = false;
+                        playerIsAlive = false;
+                    }
+                    #endregion
+
+                } while (playerIsFighting);
 
                 #endregion
-            } while (isPlaying);
+            } while (playerIsAlive);
 
             #endregion
 
             Console.WriteLine("Thanks for playing!");
+            Console.WriteLine("\n Score: {0}", score);
 
         }//end Main()
 

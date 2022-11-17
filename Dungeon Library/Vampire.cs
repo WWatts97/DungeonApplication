@@ -15,9 +15,9 @@ namespace DungeonLibrary
         public DateTime HourChangeBack { get; set; }
 
         //Constructor with one unique prop:
-        public Vampire(string name, string description, int life, int maxLife, int hitChance, int block,
+        public Vampire(string name, string description,  int maxLife, int life, int hitChance, int block,
             int minDmg, int maxDmg, bool isShiny)
-            : base(name, description, hitChance, block, life, maxLife, minDmg, maxDmg)
+            : base(name, description, hitChance, block,  maxLife, life, minDmg, maxDmg)
         {
             HourChangeBack = DateTime.Now;//Default value for unique prop.
             IsShiny = isShiny;
@@ -39,8 +39,8 @@ namespace DungeonLibrary
             //But we still assign all the properties.
             Name = "Edward";
             Description = "The love of my life";
-            Life = 60;
             MaxLife = 70;
+            Life = 60;
             HitChance = 90;
             Block = 0;
             MinDmg = 20;
