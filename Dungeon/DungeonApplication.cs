@@ -13,6 +13,7 @@ namespace Dungeon
 
             #region Create Player
 
+
             //Prompt the user to input their name:
             Console.WriteLine("What is your name?");
 
@@ -27,6 +28,12 @@ namespace Dungeon
             Player player = new Player(playerName, 70, 5, 100, 100, Race.Human, weapon);
 
             #endregion
+
+
+            //track the score:
+            int score = 0;
+            //we will update this score whenever the player defeats a monster.
+            //the display the score to the player when they exit thw game.
 
             #region Gameplay Loop
 
