@@ -43,7 +43,6 @@ namespace Dungeon
             Weapon lightsaber1 = new Weapon("Lightsaber", WeaponType.Lightsaber, 10, 5, 10, false);
 
             bool playerIsChoosingWeapon = true;
-            Weapon chosenWeapon;
 
             Player player = new Player(playerName, 70, 5, 100, 100, Race.Human, sword1);
             do
@@ -164,10 +163,10 @@ namespace Dungeon
                         for (int i = 0; lvlUp1 < 1; lvlUp1++)
                         {
                             Console.WriteLine("\nYou leveled up!\nYour maximum life has increased and been refilled!");
-                            Console.ForegroundColor = ConsoleColor.Blue;
-                            Console.WriteLine($"{player.Name} has {player.Life} life, out of {player.MaxLife} remaining!");
                             player.MaxLife += 50;//Increase their maximum life.
                             player.Life = player.MaxLife;//Refill their life.
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                            Console.WriteLine($"{player.Name} has {player.Life} life remaining, out of {player.MaxLife} maximum life!");
                             Console.ResetColor();
                         }
                         break;
@@ -175,10 +174,10 @@ namespace Dungeon
                         for (int i = 0; lvlUp2 < 1; lvlUp2++)
                         {
                             Console.WriteLine("\nYou leveled up!\nYour maximum life has increased and been refilled!");
-                            Console.ForegroundColor = ConsoleColor.Blue;
-                            Console.WriteLine($"{player.Name} has {player.Life} life, out of {player.MaxLife} remaining!");
                             player.MaxLife += 50;//Increase their maximum life.
                             player.Life = player.MaxLife;//Refill their life.
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                            Console.WriteLine($"{player.Name} has {player.Life} life remaining, out of {player.MaxLife} maximum life!");
                             Console.ResetColor();
                         }
                         break;
@@ -221,7 +220,13 @@ namespace Dungeon
                                 Console.WriteLine("\nYou found the Master Sword!");
                                 player.EquippedWeapon = lightsaber2;
                             }
-                           
+                            Console.WriteLine("\nYou leveled up!\nYour maximum life has increased and been refilled!");
+                            player.MaxLife += 50;//Increase their maximum life.
+                            player.Life = player.MaxLife;//Refill their life.
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                            Console.WriteLine($"{player.Name} has {player.Life} life remaining, out of {player.MaxLife} maximum life!");
+                            Console.ResetColor();
+
                         }
                         break;
                 };
