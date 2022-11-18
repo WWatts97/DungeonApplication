@@ -50,7 +50,7 @@ namespace Dungeon_Library
             if (player.Life > 0)
             {
                 Console.ForegroundColor = ConsoleColor.Blue;
-                Console.WriteLine($"{player.Name} has {player.Life} life, out of {player.MaxLife} remaining!");
+                Console.WriteLine($"{player.Name} has {player.Life} life remaining, out of {player.MaxLife} maximum life!");
             }
             else
             {
@@ -59,7 +59,7 @@ namespace Dungeon_Library
             if (monster.Life > 0)
             {
                 Console.ForegroundColor = ConsoleColor.Blue;
-                Console.WriteLine($"{monster.Name} has {monster.Life} life, out of {monster.MaxLife} remaining!");
+                Console.WriteLine($"{monster.Name} has {monster.Life} life remaining, out of {monster.MaxLife} maximum life!");
             }
            
             Console.ResetColor();
