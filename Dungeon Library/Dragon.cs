@@ -12,8 +12,8 @@ namespace DungeonLibrary
         public int FireBreath;
 
         public Dragon(string name, string description,  int maxLife, int life, int hitChance, int block,
-            int minDmg, int maxDmg, int fireBreath)
-            : base(name, description, hitChance, block,  maxLife, life, minDmg, maxDmg)
+            int maxDmg, int minDmg, int fireBreath)
+            : base(name, description, hitChance, block,  maxLife, life, maxDmg, minDmg)
         {
             FireBreath = fireBreath;
         }
@@ -26,9 +26,9 @@ namespace DungeonLibrary
             Life = 100;
             HitChance = 100;
             Block = 0;
-            MinDmg = 5;
-            MaxDmg = FireBreath + 10;
             FireBreath = 20;
+            MaxDmg = FireBreath + 10;
+            MinDmg = 5;
         }//default Dragon
 
         public override string ToString()

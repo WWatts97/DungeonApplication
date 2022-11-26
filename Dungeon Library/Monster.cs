@@ -35,7 +35,7 @@ namespace DungeonLibrary
         //CTOR
         public Monster() { }
 
-        public Monster(string name, string description, int hitChance, int block, int life, int maxLife, int minDmg, int maxDmg) : base(name, hitChance, block, maxLife, life)
+        public Monster(string name, string description, int hitChance, int block, int life, int maxLife, int maxDmg, int minDmg) : base(name, hitChance, block, maxLife, life)
         {
             Description = description;
             MaxDmg = maxDmg;

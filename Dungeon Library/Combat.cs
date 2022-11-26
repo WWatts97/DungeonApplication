@@ -18,7 +18,7 @@ namespace Dungeon_Library
             Random rand = new Random();
             int roll = rand.Next(1, 101);
 
-            Thread.Sleep(30);
+            Thread.Sleep(1);//TODO set to 100
 
             //if the attacker hits
             if (roll <= (attacker.CalcHitChance() - defender.CalcBlock()))
@@ -62,6 +62,32 @@ namespace Dungeon_Library
                 Console.WriteLine($"{monster.Name} has {monster.Life} life remaining, out of {monster.MaxLife} maximum life!");
             }
            
+            Console.ResetColor();
+        }//end DoBattle
+
+        public static void GoblinBattle(Monster monster, Player player)
+        {
+            DoAttack(monster, player);
+
+            if (player.Life > 0) 
+            { 
+                DoAttack(player, monster);
+            }
+            if (player.Life > 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine($"{player.Name} has {player.Life} life remaining, out of {player.MaxLife} maximum life!");
+            }
+            if (monster.Life > 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine($"{monster.Name} has {monster.Life} life remaining, out of {monster.MaxLife} maximum life!");
+            }
+            else
+            {
+                Console.WriteLine($"{player.Name} has died!");
+            }
+
             Console.ResetColor();
         }
     }

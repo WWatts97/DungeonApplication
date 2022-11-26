@@ -16,8 +16,8 @@ namespace DungeonLibrary
 
         //Constructor with one unique prop:
         public Vampire(string name, string description,  int maxLife, int life, int hitChance, int block,
-            int minDmg, int maxDmg, bool isShiny)
-            : base(name, description, hitChance, block,  maxLife, life, minDmg, maxDmg)
+            int maxDmg, int minDmg, bool isShiny)
+            : base(name, description, hitChance, block,  maxLife, life, maxDmg, minDmg)
         {
             HourChangeBack = DateTime.Now;//Default value for unique prop.
             IsShiny = isShiny;
@@ -43,8 +43,8 @@ namespace DungeonLibrary
             Life = 60;
             HitChance = 90;
             Block = 0;
-            MinDmg = 20;
             MaxDmg = 30;
+            MinDmg = 20;
             IsShiny = true;
 
             //Make sure to assign the default:

@@ -13,8 +13,8 @@ namespace DungeonLibrary
         public int HidePercent { get; set; }
 
         public Turtle(string name, string description,  int maxLife, int life, int hitChance, int block,
-            int minDmg, int maxDmg, int bonusBlock, int hidePercent)
-            : base(name, description, hitChance, block,  maxLife, life, minDmg, maxDmg)
+            int maxDmg, int minDmg, int bonusBlock, int hidePercent)
+            : base(name, description, hitChance, block,  maxLife, life, maxDmg, minDmg)
         {
             BonusBlock = bonusBlock;
             HidePercent = hidePercent;
@@ -28,8 +28,8 @@ namespace DungeonLibrary
             Life = 70;
             HitChance = 60;
             Block = 15;
-            MinDmg = 20;
             MaxDmg = 30;
+            MinDmg = 20;
             BonusBlock = 20;
             HidePercent = 25;
         }

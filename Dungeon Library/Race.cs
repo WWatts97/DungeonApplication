@@ -26,6 +26,6 @@ namespace Dungeon_Library
         Knife,
         Axe,
         Bow,
-        Lightsaber
+        Spear
     }
 }

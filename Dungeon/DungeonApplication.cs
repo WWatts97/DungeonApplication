@@ -1,5 +1,6 @@
 ﻿using Dungeon_Library;
 using DungeonLibrary;
+using System.Threading;
 
 namespace Dungeon
 {
@@ -8,27 +9,64 @@ namespace Dungeon
         static void Main(string[] args)
         {
             #region Introduction
-            Console.WriteLine("\n--== The Dragon's Dungeon ==--\n");
+            Console.WriteLine(@"Loading...10%█▒▒▒▒▒▒▒▒▒");
+            Thread.Sleep(1);//TODO set to 1000
+            Console.Clear();
+            Console.WriteLine(@"Loading...30%███▒▒▒▒▒▒▒");
+            Thread.Sleep(1);
+            Console.Clear();
+            Console.WriteLine(@"Loading...50%█████▒▒▒▒▒");
+            Thread.Sleep(1);
+            Console.Clear();
+            Console.WriteLine(@"Loading...80%███████▒▒▒");
+            Thread.Sleep(1);
+            Console.Clear();
+            Console.WriteLine(@"Loading...100%██████████");
+            Thread.Sleep(5);//TODO set to 500
+            Console.Clear();
+            Console.WriteLine("----==== Welcome to the Magic Dungeon ====----");
 
-            Console.WriteLine(@"
-                             \||/
-                            |  @___oo
-                  /\  /\   / (__,,,,|
-                 ) /^\) ^\/ _)
-                 )   /^\/   _)
-                 )   _ /  / _)
-             /\  )/\/ ||  | )_)
-            <  >      |(,,) )__)
-             ||      /    \)___)\
-             | \____(      )___) )___
-              \______(_______;;; __;;;");
+            Console.WriteLine(@"     
+                                           O       /`-.__
+                                                  /  \�'^|
+                                     o           T    l  *
+                                                _|-..-|_
+                                         O    (^ '----' `)
+                                               `\-....-/^
+                                     O       o  ) ""/ "" (
+                                               _( (-)  )_
+                                           O  /\ )    (  /\
+                                             /  \(    ) |  \
+                                         o  o    \)  ( /    \
+                                           /     |(  )|      \
+                                          /    o \ \( /       \
+                                    __.--'   O    \_ /   .._   \
+                                   //|)\      ,   (_)   /(((\^)'\
+                                      |       | O         )  `  |
+                                      |      / o___      /      /
+                                     /  _.-''^^__O_^^''-._     /
+                                   .'  /  -''^^    ^^''-  \--'^
+                                 .'   .`.  `'''----'''^  .`. \
+                               .'    /   `'--..____..--'^   \ \
+                              /  _.-/                        \ \
+                          .::'_/^   |                        |  `.
+                                 .-'|                        |    `-.
+                           _.--'`   \                        /       `-.
+                          /          \                      /           `-._
+                          `'---..__   `.                  .�_.._   __       \
+                                   ``'''`.              .'      `'^  `''---'^
+                                          `-..______..-'");
+            Console.WriteLine("Press Enter to continue...");
+            Console.ReadKey();
+            Console.Clear();
+
             #endregion
 
             #region Create Player
 
 
             //Prompt the user to input their name:
-            Console.WriteLine("What is your name?");
+            Console.WriteLine("Please enter your character's name.");
 
             //Store the user input in a string.
             string playerName = Console.ReadLine();
@@ -36,15 +74,15 @@ namespace Dungeon
 
 
             //Construct the Player's weapon:
-            Weapon sword1 = new Weapon("Sword", WeaponType.Sword, 10,5,10,false);
-            Weapon knife1 = new Weapon("Knife", WeaponType.Knife, 10, 5, 10, false);
-            Weapon axe1 = new Weapon("Axe", WeaponType.Axe, 10, 5, 10, false);
-            Weapon bow1 = new Weapon("Bow", WeaponType.Bow, 10, 5, 10, false);
-            Weapon lightsaber1 = new Weapon("Lightsaber", WeaponType.Lightsaber, 10, 5, 10, false);
+            Weapon sword1 = new Weapon("Sword", WeaponType.Sword, 30, 20, 30,false);
+            Weapon knife1 = new Weapon("Knife", WeaponType.Knife, 20, 15, 40, false);
+            Weapon axe1 = new Weapon("Axe", WeaponType.Axe, 50, 20, 10, true);
+            Weapon bow1 = new Weapon("Bow", WeaponType.Bow, 25, 20, 35, true);
+            Weapon spear1 = new Weapon("Spear", WeaponType.Spear, 45, 25, 15, true);
 
             bool playerIsChoosingWeapon = true;
 
-            Player player = new Player(playerName, 70, 5, 100, 100, Race.Human, sword1);
+            Player player = new Player(playerName, 50, 0, 100, 100, Race.Human, sword1);
             do
             {
                 Console.WriteLine("\n Choose your weapon:\n" + "(S) Sword\n" + "(K) Knife\n" + "(A) Axe\n" + "(B) Bow\n" + "(L) Lightsaber");
@@ -70,7 +108,7 @@ namespace Dungeon
                         playerIsChoosingWeapon = false;
                         break;
                         case ConsoleKey.L:
-                        player.EquippedWeapon = lightsaber1;
+                        player.EquippedWeapon = spear1;
                         playerIsChoosingWeapon = false;
                         break;
                     default:
@@ -154,7 +192,6 @@ namespace Dungeon
             do//start of gameplay loop
             {
 
-                //TODO fix unlimited levelup bug
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 switch (score)
                 {
@@ -187,38 +224,38 @@ namespace Dungeon
                         {
                             if (player.EquippedWeapon == sword1)
                             {
-                                Weapon sword2 = new Weapon("Sword", WeaponType.Sword, 10, 5, 10, false);
+                                Weapon sword2 = new Weapon("Sword", WeaponType.Sword, 40, 30, 35, false);
 
                                 Console.WriteLine("\nYou found the Master Sword!");
                                 player.EquippedWeapon = sword2;
                             }
                             else if (player.EquippedWeapon == knife1)
                             {
-                                Weapon knife2 = new Weapon("Sword", WeaponType.Knife, 10, 5, 10, false);
+                                Weapon knife2 = new Weapon("Knife", WeaponType.Knife, 30, 25, 45, false);
 
                                 Console.WriteLine("\nYou found the Master Sword!");
                                 player.EquippedWeapon = knife2;
                             }
                             else if (player.EquippedWeapon == axe1)
                             {
-                                Weapon axe2 = new Weapon("Sword", WeaponType.Axe, 10, 5, 10, false);
+                                Weapon axe2 = new Weapon("Axe", WeaponType.Axe, 60, 30, 15, true);
 
                                 Console.WriteLine("\nYou found the Master Sword!");
                                 player.EquippedWeapon = axe2;
                             }
                             else if (player.EquippedWeapon == bow1)
                             {
-                                Weapon bow2 = new Weapon("Sword", WeaponType.Bow, 10, 5, 10, false);
+                                Weapon bow2 = new Weapon("Bow", WeaponType.Bow, 35, 30, 40, true);
 
                                 Console.WriteLine("\nYou found the Master Sword!");
                                 player.EquippedWeapon = bow2;
                             }
-                            else if (player.EquippedWeapon == lightsaber1)
+                            else if (player.EquippedWeapon == spear1)
                             {
-                                Weapon lightsaber2 = new Weapon("Sword", WeaponType.Lightsaber, 10, 5, 10, false);
+                                Weapon spear2 = new Weapon("Spear", WeaponType.Spear, 55, 35, 20, true);
 
                                 Console.WriteLine("\nYou found the Master Sword!");
-                                player.EquippedWeapon = lightsaber2;
+                                player.EquippedWeapon = spear2;
                             }
                             Console.WriteLine("\nYou leveled up!\nYour maximum life has increased and been refilled!");
                             player.MaxLife += 50;//Increase their maximum life.
@@ -253,7 +290,7 @@ namespace Dungeon
                 Vampire v1 = new Vampire();
                 Vampire v2 = new Vampire("The Count", "1! Ah, ah ah. 2! Ah, ah, ah. 3!", 25, 25, 60, 1, 10, 15, false);
                 Turtle t1 = new Turtle();
-                Turtle t2 = new Turtle("Franklin", "He can count by twos and tie his shoes", 10, 10, 50, 10, 5, 10, 50, 80);
+                Turtle t2 = new Turtle("Franklin", "He can count by twos and tie his shoes", 1000, 1000, 50, 10, 5, 10, 50, 80);
                 Dragon d1= new Dragon();
                 Goblin g1 = new Goblin();
 
@@ -261,14 +298,8 @@ namespace Dungeon
                 //Add the Monsters to a Collection:
                 Monster[] monsters =
                 {
-                    b1,
-                    b2, b2, b2,
-                    v1,
-                    v2, v2,
-                    t1,
-                    t2,
-                    d1,
-                    g1, g1
+                    
+                    g1
                 };
 
                 //Pick one at random to place in the room.
@@ -276,7 +307,7 @@ namespace Dungeon
                 int randomNbr = rand.Next(monsters.Length);
                 Monster monster = monsters[randomNbr];
 
-                Console.WriteLine("\nYou encountered {0}!", monster.Name);
+                Console.Write("\nYou encountered"); Console.ForegroundColor = ConsoleColor.Red; Console.Write(" {0}!" ,monster.Name); Console.ResetColor();
 
                 #endregion
 
@@ -299,6 +330,12 @@ namespace Dungeon
                     switch (fightingChoice.ToUpper())
                     {
                         case "A":
+
+                            if (monster == g1)
+                            {
+                                Combat.GoblinBattle(monster, player);
+                            }
+                            else
                             Combat.DoBattle(player, monster);
 
                             //check monster life
@@ -352,7 +389,32 @@ namespace Dungeon
 
             #endregion
 
-            Console.WriteLine("Thanks for playing!");
+            Console.WriteLine(@"
+                                        ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼
+                                        ███▀▀▀██┼███▀▀▀███┼███▀█▄█▀███┼██▀▀▀
+                                        ██┼┼┼┼██┼██┼┼┼┼┼██┼██┼┼┼█┼┼┼██┼██┼┼┼
+                                        ██┼┼┼▄▄▄┼██▄▄▄▄▄██┼██┼┼┼▀┼┼┼██┼██▀▀▀
+                                        ██┼┼┼┼██┼██┼┼┼┼┼██┼██┼┼┼┼┼┼┼██┼██┼┼┼
+                                        ███▄▄▄██┼██┼┼┼┼┼██┼██┼┼┼┼┼┼┼██┼██▄▄▄
+                                        ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼
+                                        ███▀▀▀███┼▀███┼┼██▀┼██▀▀▀┼██▀▀▀▀██▄┼
+                                        ██┼┼┼┼┼██┼┼┼██┼┼██┼┼██┼┼┼┼██┼┼┼┼┼██┼
+                                        ██┼┼┼┼┼██┼┼┼██┼┼██┼┼██▀▀▀┼██▄▄▄▄▄▀▀┼
+                                        ██┼┼┼┼┼██┼┼┼██┼┼█▀┼┼██┼┼┼┼██┼┼┼┼┼██┼
+                                        ███▄▄▄███┼┼┼─▀█▀┼┼─┼██▄▄▄┼██┼┼┼┼┼██▄
+                                        ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼
+                                        ┼┼┼┼┼┼┼┼██┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼██┼┼┼┼┼┼┼┼┼
+                                        ┼┼┼┼┼┼████▄┼┼┼▄▄▄▄▄▄▄┼┼┼▄████┼┼┼┼┼┼┼
+                                        ┼┼┼┼┼┼┼┼┼▀▀█▄█████████▄█▀▀┼┼┼┼┼┼┼┼┼┼
+                                        ┼┼┼┼┼┼┼┼┼┼┼█████████████┼┼┼┼┼┼┼┼┼┼┼┼
+                                        ┼┼┼┼┼┼┼┼┼┼┼██▀▀▀███▀▀▀██┼┼┼┼┼┼┼┼┼┼┼┼
+                                        ┼┼┼┼┼┼┼┼┼┼┼██┼┼┼███┼┼┼██┼┼┼┼┼┼┼┼┼┼┼┼
+                                        ┼┼┼┼┼┼┼┼┼┼┼█████▀▄▀█████┼┼┼┼┼┼┼┼┼┼┼┼
+                                        ┼┼┼┼┼┼┼┼┼┼┼┼███████████┼┼┼┼┼┼┼┼┼┼┼┼┼
+                                        ┼┼┼┼┼┼┼┼▄▄▄██┼┼█▀█▀█┼┼██▄▄▄┼┼┼┼┼┼┼┼┼
+                                        ┼┼┼┼┼┼┼┼▀▀██┼┼┼┼┼┼┼┼┼┼┼██▀▀┼┼┼┼┼┼┼┼┼
+                                        ┼┼┼┼┼┼┼┼┼┼▀▀┼┼┼┼┼┼┼┼┼┼┼▀▀┼┼┼┼┼┼┼┼┼┼┼
+                                        ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼");
             Console.WriteLine("\n Score: {0}", score);
 
         }//end Main()
