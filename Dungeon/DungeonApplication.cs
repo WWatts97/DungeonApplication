@@ -74,18 +74,18 @@ namespace Dungeon
 
 
             //Construct the Player's weapon:
-            Weapon sword1 = new Weapon("Sword", WeaponType.Sword, 30, 20, 30,false);
-            Weapon knife1 = new Weapon("Knife", WeaponType.Knife, 20, 15, 40, false);
-            Weapon axe1 = new Weapon("Axe", WeaponType.Axe, 50, 20, 10, true);
-            Weapon bow1 = new Weapon("Bow", WeaponType.Bow, 25, 20, 35, true);
-            Weapon spear1 = new Weapon("Spear", WeaponType.Spear, 45, 25, 15, true);
+            Weapon sword1 = new Weapon("Knight's Broadsword", WeaponType.Sword, 30, 20, 30,false);
+            Weapon knife1 = new Weapon("Assassin's Dagger", WeaponType.Knife, 20, 15, 40, false);
+            Weapon axe1 = new Weapon("Giant's Axe", WeaponType.Axe, 50, 20, 10, true);
+            Weapon bow1 = new Weapon("Elf's Bow", WeaponType.Bow, 25, 20, 35, true);
+            Weapon spear1 = new Weapon("Merfolk's Spear", WeaponType.Spear, 45, 25, 15, true);
 
             bool playerIsChoosingWeapon = true;
 
             Player player = new Player(playerName, 50, 0, 100, 100, Race.Human, sword1);
             do
             {
-                Console.WriteLine("\n Choose your weapon:\n" + "(S) Sword\n" + "(K) Knife\n" + "(A) Axe\n" + "(B) Bow\n" + "(L) Lightsaber");
+                Console.WriteLine("\n Choose your weapon:\n" + "(S) Sword\n" + "(K) Knife\n" + "(A) Axe\n" + "(B) Bow\n" + "(P) Spear");
 
                 ConsoleKey userKey = Console.ReadKey().Key;
 
@@ -107,7 +107,7 @@ namespace Dungeon
                         player.EquippedWeapon = bow1;
                         playerIsChoosingWeapon = false;
                         break;
-                        case ConsoleKey.L:
+                        case ConsoleKey.P:
                         player.EquippedWeapon = spear1;
                         playerIsChoosingWeapon = false;
                         break;
