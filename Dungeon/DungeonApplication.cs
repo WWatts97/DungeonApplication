@@ -376,7 +376,9 @@ namespace Dungeon
 
                     if (player.Life <= 0)
                     {
-                        Console.WriteLine("Game over! Better luck next time!");
+                        Console.Clear();
+                        Console.ForegroundColor = ConsoleColor.Blue; Console.Write(playerName); Console.ForegroundColor = ConsoleColor.Red; Console.Write(" has died!"); Console.ResetColor();
+                        Thread.Sleep(1000);
                         playerIsFighting = false;
                         playerIsAlive = false;
                     }
@@ -388,8 +390,9 @@ namespace Dungeon
             } while (playerIsAlive);
 
             #endregion
+            Console.Clear();
 
-            Console.WriteLine(@"
+            Console.WriteLine(@"        
                                         ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼
                                         ███▀▀▀██┼███▀▀▀███┼███▀█▄█▀███┼██▀▀▀
                                         ██┼┼┼┼██┼██┼┼┼┼┼██┼██┼┼┼█┼┼┼██┼██┼┼┼
@@ -415,7 +418,7 @@ namespace Dungeon
                                         ┼┼┼┼┼┼┼┼▀▀██┼┼┼┼┼┼┼┼┼┼┼██▀▀┼┼┼┼┼┼┼┼┼
                                         ┼┼┼┼┼┼┼┼┼┼▀▀┼┼┼┼┼┼┼┼┼┼┼▀▀┼┼┼┼┼┼┼┼┼┼┼
                                         ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼");
-            Console.WriteLine("\n Score: {0}", score);
+            Console.WriteLine("Score: {0}", score);
 
         }//end Main()
 

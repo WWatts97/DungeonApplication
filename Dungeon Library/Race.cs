@@ -20,12 +20,4 @@ namespace Dungeon_Library
         Gnome,
         Demon
     }
-    public enum WeaponType
-    {
-        Sword,
-        Knife,
-        Axe,
-        Bow,
-        Spear
-    }
 }
