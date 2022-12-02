@@ -9,7 +9,7 @@ namespace Dungeon_Library
     public sealed class Player : Character
     {
         //FIELDS
-        private Weapon _offHandWeapon;
+
         //PROPS
         //UNIQUE props of player :
         public Race Race { get; set; }
@@ -23,37 +23,8 @@ namespace Dungeon_Library
 
         public override string ToString()
         {
-            string raceDescription = "";
-
-            switch (Race)
-            {//TODO race desc
-                case Race.Elf:
-                    raceDescription = "Elf";
-                    break;
-                case Race.Human:
-                    raceDescription = "Human";
-                    break;
-                case Race.Merfolk:
-                    raceDescription = "Merfolk";
-                    break;
-                case Race.AngelKin:
-                    raceDescription = "Angel-Kin";
-                    break;
-                case Race.DragonKin:
-                    raceDescription = "Dragon-Kin";
-                    break;
-                case Race.Vampire:
-                    raceDescription = "Vampire";
-                    break;
-                case Race.Giant:
-                    raceDescription = "Giant";
-                    break;
-                case Race.HalfDemon:
-                    raceDescription = "Half-Demon";
-                    break;
-            }
             Console.ForegroundColor = ConsoleColor.Blue;
-            return base.ToString() + "Race: " + Race + "\nDescription: " + raceDescription + "\n\n" + EquippedWeapon + "\nCurrent Hit Chance: " + (HitChance + EquippedWeapon.BonusHitChance) + "%\n";
+            return base.ToString() + Race + "\n\n" + EquippedWeapon + "\nCurrent Hit Chance: " + (HitChance + EquippedWeapon.BonusHitChance) + "%\n";
         }
 
         public override int CalcDamage()

@@ -1,25 +1,24 @@
-﻿using Microsoft.VisualBasic;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Numerics;
-using System.Reflection.Emit;
-using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Dungeon_Library
 {
-    public enum Race
+    public class Race
     {
-        Elf,
-        Human,
-        Merfolk,
-        Vampire,
-        AngelKin,
-        DragonKin,
-        Giant,
-        HalfDemon
+        public RaceType RaceType { get; set; }
+        public string Description { get; set; } 
+        public string Bonus { get; set; }
+
+        public Race(RaceType raceType, string desc, string bonus) 
+        {
+            RaceType = raceType;
+            Description = desc;
+            Bonus = bonus;
+        }
+        public override string ToString() =>
+         string.Format($"Race: {RaceType}\nDescription: {Description}\nBonus: {Bonus}");
     }
 }
