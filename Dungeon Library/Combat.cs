@@ -21,15 +21,18 @@ namespace Dungeon_Library
             Thread.Sleep(1);//TODO set to 100
 
             //if the attacker hits
-            if (roll <= (attacker.CalcHitChance() - defender.CalcBlock()))
+            if (roll <= (attacker.CalcHitChance()))
             {
-                int damageDealt = attacker.CalcDamage();
+                int damageDealt = attacker.CalcDamage() - defender.CalcBlock();
 
                 defender.Life -= damageDealt;
 
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("{0} hit {1} for {2} damage!",
-                    attacker.Name, defender.Name, damageDealt);
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine($"{attacker.Name} attacked for {attacker.CalcDamage()}!");
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+                Console.WriteLine($"{defender.Name} blocked {defender.CalcBlock()} damage!");
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine($"{defender.Name} takes {damageDealt} damage!\n");
 
                 Console.ResetColor();
             }

@@ -16,8 +16,10 @@ namespace Dungeon_Library
         Elf,
         Human,
         Merfolk,
-        Troll,
-        Gnome,
-        Demon
+        Vampire,
+        AngelKin,
+        DragonKin,
+        Giant,
+        HalfDemon
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Dungeon_Library
 {
-    public class Character
+    public abstract class Character
     {
         //fields
         private int _life;
@@ -39,8 +39,39 @@
         //methods
         public virtual int CalcBlock()
             {
-            return Block;
+            if (Block == 0)
+            {
+                return 0;
             }
+            else if (Block == 1)
+            {
+                Random rand = new Random();
+                int roll = rand.Next(1, 5);
+                return roll;
+            }
+            else if (Block == 2)
+            {
+                Random rand = new Random();
+                int roll = rand.Next(3, 7);
+                return roll;
+            }
+            else if (Block == 2)
+            {
+                Random rand = new Random();
+                int roll = rand.Next(5, 9);
+                return roll;
+            }
+            else if (Block == 3)
+            {
+                Random rand = new Random();
+                int roll = rand.Next(7, 11);
+                return roll;
+            }
+            else
+            {
+                return 10000;
+            }
+        }
         public virtual int CalcHitChance()
             {
             return HitChance;
@@ -51,11 +82,12 @@
             }
         public override string ToString()
         {
-            return string.Format("Character Name: {0}\n" +
+            return string.Format("--==Character Stats==--\n" +
+                "Character Name: {0}\n" +
                 "Max Life: {1}\n" +
                 "Current Life: {2}\n" +
-                "Hit Chance: {3}\n" +
-                "Block? {4}",
+                "Base Hit Chance: {3}%\n" +
+                "Armor Class: {4}\n",
                 Name,
                 MaxLife,
                 Life,

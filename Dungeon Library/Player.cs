@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dungeon_Library
 {
-    public class Player : Character
+    public sealed class Player : Character
     {
         //FIELDS
 
@@ -36,18 +36,24 @@ namespace Dungeon_Library
                 case Race.Merfolk:
                     raceDescription = "Merfolk";
                     break;
-                case Race.Troll:
-                    raceDescription = "Troll";
+                case Race.AngelKin:
+                    raceDescription = "Angel-Kin";
                     break;
-                case Race.Gnome:
-                    raceDescription = "Gnome";
+                case Race.DragonKin:
+                    raceDescription = "Dragon-Kin";
                     break;
-                case Race.Demon:
-                    raceDescription = "Demon";
+                case Race.Vampire:
+                    raceDescription = "Vampire";
+                    break;
+                case Race.Giant:
+                    raceDescription = "Giant";
+                    break;
+                case Race.HalfDemon:
+                    raceDescription = "Half-Demon";
                     break;
             }
-
-            return base.ToString()+ "\nDescription: " + raceDescription + "\n" + EquippedWeapon + "\nRace: "+ Race;
+            Console.ForegroundColor = ConsoleColor.Blue;
+            return base.ToString() + "Race: " + Race + "\nDescription: " + raceDescription + "\n\n" + EquippedWeapon + "\nCurrent Hit Chance: " + (HitChance + EquippedWeapon.BonusHitChance) + "%";
         }
 
         public override int CalcDamage()

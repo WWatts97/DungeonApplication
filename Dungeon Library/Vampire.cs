@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace DungeonLibrary
 {
     //Inheritance:
-    public class Vampire : Monster
+    public sealed class Vampire : Monster
     {
         //Unique props:
         public bool IsShiny { get; set; }

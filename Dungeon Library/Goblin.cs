@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DungeonLibrary
 {
-    public class Goblin : Monster
+    public sealed class Goblin : Monster
     {
         public Goblin()
         {
@@ -16,14 +16,14 @@ namespace DungeonLibrary
             MaxLife = 100;
             Life = 100;
             HitChance = 100;
-            Block = 0;
+            Block = 1;
             MaxDmg = 20;
             MinDmg = 10;
         }//default Goblin
 
         public override string ToString()
         {
-            return base.ToString() + "Goblins are fast! He will attack you before you attack him!";
+            return base.ToString() + "\nCombat Hint: Goblins are fast! He will attack you before you attack him!";
         }
     }
 }

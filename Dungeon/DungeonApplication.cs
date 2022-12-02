@@ -74,18 +74,22 @@ namespace Dungeon
 
 
             //Construct the Player's weapon:
-            Weapon sword1 = new Weapon("Knight's Broadsword", WeaponType.Sword, 30, 20, 30,false);
-            Weapon knife1 = new Weapon("Assassin's Dagger", WeaponType.Knife, 20, 15, 40, false);
-            Weapon axe1 = new Weapon("Giant's Axe", WeaponType.Axe, 50, 20, 10, true);
-            Weapon bow1 = new Weapon("Elf's Bow", WeaponType.Bow, 25, 20, 35, true);
-            Weapon spear1 = new Weapon("Merfolk's Spear", WeaponType.Spear, 45, 25, 15, true);
+            Weapon sword1 = new Weapon("Knight's Broadsword", WeaponType.Sword, 20, 10, 30,false);
+            Weapon knife1 = new Weapon("Assassin's Dagger", WeaponType.Knife, 15, 10, 40, false);
+            Weapon axe1 = new Weapon("Lumber Axe", WeaponType.Axe, 30, 15, 20, false);
+            Weapon bow1 = new Weapon("Long Bow", WeaponType.Bow, 45, 40, 30, true);
+            Weapon spear1 = new Weapon("Guard's Spear", WeaponType.Spear, 60, 50, 20, true);
+            Weapon club1 = new Weapon("Orc's Club", WeaponType.Club, 20, 10, 35, false);
+            Weapon greatAxe1 = new Weapon("Giant's Axe", WeaponType.GreatAxe, 70, 50, 10, true);
+            Weapon greatSword1 = new Weapon("Colossal Sword", WeaponType.GreatSword, 60, 45, 30, true);
+
 
             bool playerIsChoosingWeapon = true;
 
-            Player player = new Player(playerName, 50, 0, 100, 100, Race.Human, sword1);
+            Player player = new Player(playerName, 50, 1, 100, 100, Race.Human, sword1);
             do
             {
-                Console.WriteLine("\n Choose your weapon:\n" + "(S) Sword\n" + "(K) Knife\n" + "(A) Axe\n" + "(B) Bow\n" + "(P) Spear");
+                Console.WriteLine("\n Choose your weapon:\n" + "(S) Sword\n" + "(K) Knife\n" + "(A) Axe\n" + "(B) Bow\n" + "(P) Spear\n" + "(C) Club\n" + "(X) GreatAxe\n" + "(W) GreatSword");
 
                 ConsoleKey userKey = Console.ReadKey().Key;
 
@@ -111,6 +115,14 @@ namespace Dungeon
                         player.EquippedWeapon = spear1;
                         playerIsChoosingWeapon = false;
                         break;
+                    case ConsoleKey.X:
+                        player.EquippedWeapon = greatAxe1;
+                        playerIsChoosingWeapon = false;
+                        break;
+                    case ConsoleKey.W:
+                        player.EquippedWeapon = greatSword1;
+                        playerIsChoosingWeapon = false;
+                        break;
                     default:
                         Console.WriteLine("Input not understood. Please try again.");
                         break;
@@ -125,9 +137,11 @@ namespace Dungeon
                 "\n(E) Elf" +
                 "\n(H) Human" +
                 "\n(M) Merfolk" +
-                "\n(D) Demon" +
-                "\n(G) Gnome" +
-                "\n(T) Troll");
+                "\n(D) Dragon-Kin" +
+                "\n(A) Angel-Kin" +
+                "\n(V) Vampire" +
+                "\n(G) Giant" +
+                "\n(N) Half-Demon");
 
                 ConsoleKey raceCoice = Console.ReadKey().Key;
                 Console.Clear();
@@ -147,16 +161,24 @@ namespace Dungeon
                         player.Race = Race.Merfolk;
                         playerIsChoosingRace = false;
                         break;
+                        case ConsoleKey.V:
+                        player.Race = Race.Vampire;
+                        playerIsChoosingRace = false;
+                        break;
+                        case ConsoleKey.A:
+                        player.Race = Race.AngelKin;
+                        playerIsChoosingRace = false;
+                        break;
                         case ConsoleKey.D:
-                        player.Race = Race.Demon;
+                        player.Race = Race.DragonKin;
                         playerIsChoosingRace = false;
                         break;
-                        case ConsoleKey.G:
-                        player.Race = Race.Gnome;
+                    case ConsoleKey.G:
+                        player.Race = Race.Giant;
                         playerIsChoosingRace = false;
                         break;
-                        case ConsoleKey.T:
-                        player.Race = Race.Troll;
+                    case ConsoleKey.N:
+                        player.Race = Race.HalfDemon;
                         playerIsChoosingRace = false;
                         break;
                     default:
@@ -224,38 +246,59 @@ namespace Dungeon
                         {
                             if (player.EquippedWeapon == sword1)
                             {
-                                Weapon sword2 = new Weapon("Sword", WeaponType.Sword, 40, 30, 35, false);
+                                Weapon sword2 = new Weapon("Master Sword", WeaponType.Sword, 30, 20, 35, false);
 
                                 Console.WriteLine("\nYou found the Master Sword!");
                                 player.EquippedWeapon = sword2;
                             }
                             else if (player.EquippedWeapon == knife1)
                             {
-                                Weapon knife2 = new Weapon("Knife", WeaponType.Knife, 30, 25, 45, false);
+                                Weapon knife2 = new Weapon("Shadowstep Dagger", WeaponType.Knife, 25, 20, 45, false);
 
-                                Console.WriteLine("\nYou found the Master Sword!");
+                                Console.WriteLine("\nYou found the Shadowstep Dagger!");
                                 player.EquippedWeapon = knife2;
                             }
                             else if (player.EquippedWeapon == axe1)
                             {
-                                Weapon axe2 = new Weapon("Axe", WeaponType.Axe, 60, 30, 15, true);
+                                Weapon axe2 = new Weapon("Pic's Axe", WeaponType.Axe, 40, 25, 25, false);
 
-                                Console.WriteLine("\nYou found the Master Sword!");
+                                Console.WriteLine("\nYou found the Pic's Axe!");
                                 player.EquippedWeapon = axe2;
                             }
                             else if (player.EquippedWeapon == bow1)
                             {
-                                Weapon bow2 = new Weapon("Bow", WeaponType.Bow, 35, 30, 40, true);
+                                Weapon bow2 = new Weapon("Colossal Bow", WeaponType.Bow, 60, 55, 35, true);
 
-                                Console.WriteLine("\nYou found the Master Sword!");
+                                Console.WriteLine("\nYou found the Colossal Bow!");
                                 player.EquippedWeapon = bow2;
                             }
                             else if (player.EquippedWeapon == spear1)
                             {
-                                Weapon spear2 = new Weapon("Spear", WeaponType.Spear, 55, 35, 20, true);
+                                Weapon spear2 = new Weapon("Neptune's Trident", WeaponType.Spear, 75, 65, 25, true);
 
-                                Console.WriteLine("\nYou found the Master Sword!");
+                                Console.WriteLine("\nYou found the Neptune's Trident!");
                                 player.EquippedWeapon = spear2;
+                            }
+                            else if (player.EquippedWeapon == club1)
+                            {
+                                Weapon club2 = new Weapon("A Bonker", WeaponType.Club, 30, 20, 40, false);
+
+                                Console.WriteLine("\nYou found the a Bonker!");
+                                player.EquippedWeapon = club2;
+                            }
+                            else if (player.EquippedWeapon == greatAxe1)
+                            {
+                                Weapon greatAxe2 = new Weapon("Ground Breaker Axe", WeaponType.GreatAxe, 85, 65, 15, true);
+
+                                Console.WriteLine("\nYou found the Ground Breaker Axe!");
+                                player.EquippedWeapon= greatAxe2;
+                            }
+                            else if (player.EquippedWeapon == greatSword1)
+                            {
+                                Weapon greatSword2 = new Weapon("Giant's Knife", WeaponType.GreatSword, 75, 60, 35, true);
+
+                                Console.WriteLine("\nYou found the Giant's Knife!");
+                                player.EquippedWeapon= greatSword2;
                             }
                             Console.WriteLine("\nYou leveled up!\nYour maximum life has increased and been refilled!");
                             player.MaxLife += 50;//Increase their maximum life.
@@ -286,7 +329,7 @@ namespace Dungeon
 
                 //Create Monster objects:
                 Bunny b1 = new Bunny();
-                Bunny b2 = new Bunny("Buneary", "From the Sinnoh Region!", 20, 20, 70, 0, 5, 10, true);
+                Bunny b2 = new Bunny("Buneary", "From the Sinnoh Region!", 20, 20, 70, 1, 10, 5, true);
                 Vampire v1 = new Vampire();
                 Vampire v2 = new Vampire("The Count", "1! Ah, ah ah. 2! Ah, ah, ah. 3!", 25, 25, 60, 1, 10, 15, false);
                 Turtle t1 = new Turtle();
@@ -299,7 +342,7 @@ namespace Dungeon
                 Monster[] monsters =
                 {
                     
-                    g1
+                    b1
                 };
 
                 //Pick one at random to place in the room.
@@ -315,6 +358,7 @@ namespace Dungeon
 
                 do
                 {
+                    Console.ResetColor();
                     playerIsFighting = true;
                     Console.WriteLine("\nChoose an action:\n" +
                         "A) Attack\n" +
@@ -391,7 +435,7 @@ namespace Dungeon
 
             #endregion
             Console.Clear();
-
+            Console.ForegroundColor = ConsoleColor.DarkRed;
             Console.WriteLine(@"        
                                         ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼
                                         ███▀▀▀██┼███▀▀▀███┼███▀█▄█▀███┼██▀▀▀
@@ -418,7 +462,9 @@ namespace Dungeon
                                         ┼┼┼┼┼┼┼┼▀▀██┼┼┼┼┼┼┼┼┼┼┼██▀▀┼┼┼┼┼┼┼┼┼
                                         ┼┼┼┼┼┼┼┼┼┼▀▀┼┼┼┼┼┼┼┼┼┼┼▀▀┼┼┼┼┼┼┼┼┼┼┼
                                         ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼");
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Score: {0}", score);
+            Console.ResetColor();
 
         }//end Main()
 

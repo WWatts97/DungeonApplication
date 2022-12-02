@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DungeonLibrary
 {
-    public class Monster : Character
+    public abstract class Monster : Character
     {
         //FIELDS
         private int _minDmg;//We only need this field because it has a business rule.
@@ -45,7 +45,9 @@ namespace DungeonLibrary
         //METHODS
         public override string ToString()
         {
-            return base.ToString() + $"\nDamage: {MinDmg} - {MaxDmg}" +
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+
+            return base.ToString() + $"Max Damage : {MaxDmg}\nMin Damage {MinDmg}" +
                 $"\nDescription: {Description}";//Add the unique properties to the ToString();
         }
     

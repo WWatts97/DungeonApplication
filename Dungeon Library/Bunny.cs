@@ -8,7 +8,7 @@ namespace DungeonLibrary
 {
     //Change the access modifier from internal to public.
     //Inherit from Monster by adding ": Monster"
-    public class Bunny : Monster
+    public sealed class Bunny : Monster
     {
         //Add any unique properties for this Monster.
         public bool IsFluffy { get; set; }
@@ -30,7 +30,7 @@ namespace DungeonLibrary
             MaxLife = 100;
             Life = 100;
             HitChance = 100;
-            Block = 0;
+            Block = 1;
             MaxDmg = 5;
             MinDmg = 5;
             IsFluffy = false;

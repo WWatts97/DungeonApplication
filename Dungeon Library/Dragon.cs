@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DungeonLibrary
 {
-    public class Dragon : Monster
+    public sealed class Dragon : Monster
     {
         public int FireBreath;
 

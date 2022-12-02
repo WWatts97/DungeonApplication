@@ -12,6 +12,9 @@ namespace Dungeon_Library
         Knife,
         Axe,
         Bow,
-        Spear
+        Spear,
+        Club,
+        GreatAxe,
+        GreatSword
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dungeon_Library
 {
-    public class Weapon
+    public sealed class Weapon
     {
         //fields
         private int _minDamage;
@@ -44,17 +44,18 @@ namespace Dungeon_Library
         //methods
         public override string ToString()
         {
-            return string.Format("Weapon Name: {0}\n" +
+            return string.Format("--==Weapon Stats==--\n" +
+                "Weapon Name: {0}\n" +
                 "Weapon Type: {5}\n" +
                 "Max Damage: {1}\n" +
                 "Min Damage: {2}\n" +
-                "Bonus Hit Chance: {3}\n" +
+                "Bonus Hit Chance: {3}%\n" +
                 "Does it require both hands? {4}",
                 Name,
                 MaxDamage,
                 MinDamage,
                 BonusHitChance,
-                IsTwoHanded,
+                (IsTwoHanded ? "Yes" : "No"),
                 Type);
         }
     }//end wepaon class
