@@ -30,7 +30,7 @@ namespace DungeonLibrary
             MaxLife = 100;
             Life = 100;
             HitChance = 100;
-            Block = 1;
+            Block = 0;
             MaxDmg = 5;
             MinDmg = 5;
             IsFluffy = false;

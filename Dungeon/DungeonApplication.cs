@@ -56,7 +56,7 @@ namespace Dungeon
                           `'---..__   `.                  .�_.._   __       \
                                    ``'''`.              .'      `'^  `''---'^
                                           `-..______..-'");
-            Console.WriteLine("Press Enter to continue...");
+            Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
             Console.Clear();
 
@@ -74,22 +74,22 @@ namespace Dungeon
 
 
             //Construct the Player's weapon:
-            Weapon sword1 = new Weapon("Knight's Broadsword", WeaponType.Sword, 20, 10, 30,false);
-            Weapon knife1 = new Weapon("Assassin's Dagger", WeaponType.Knife, 15, 10, 40, false);
-            Weapon axe1 = new Weapon("Lumber Axe", WeaponType.Axe, 30, 15, 20, false);
+            Weapon sword1 = new Weapon("Knight's Broadsword", WeaponType.Sword, 25, 15, 30,false);
+            Weapon knife1 = new Weapon("Assassin's Dagger", WeaponType.Knife, 20, 15, 40, false);
+            Weapon axe1 = new Weapon("Lumber Axe", WeaponType.Axe, 35, 20, 20, false);
             Weapon bow1 = new Weapon("Long Bow", WeaponType.Bow, 45, 40, 30, true);
             Weapon spear1 = new Weapon("Guard's Spear", WeaponType.Spear, 60, 50, 20, true);
-            Weapon club1 = new Weapon("Orc's Club", WeaponType.Club, 20, 10, 35, false);
+            Weapon club1 = new Weapon("Orc's Club", WeaponType.Club, 25, 15, 35, false);
             Weapon greatAxe1 = new Weapon("Giant's Axe", WeaponType.GreatAxe, 70, 50, 10, true);
             Weapon greatSword1 = new Weapon("Colossal Sword", WeaponType.GreatSword, 60, 45, 30, true);
 
 
             bool playerIsChoosingWeapon = true;
-
-            Player player = new Player(playerName, 50, 1, 100, 100, Race.Human, sword1);
+            
+            Player player = new Player(playerName, 50, 0, 100, 100, Race.Human, sword1);
             do
             {
-                Console.WriteLine("\n Choose your weapon:\n" + "(S) Sword\n" + "(K) Knife\n" + "(A) Axe\n" + "(B) Bow\n" + "(P) Spear\n" + "(C) Club\n" + "(X) GreatAxe\n" + "(W) GreatSword");
+                Console.WriteLine("\n Choose your weapon:\n" + "(S) Sword\n" + "(K) Knife\n" + "(A) Axe\n" + "(B) Bow\n" + "(P) Spear\n" + "(C) Club\n" + "(X) GreatAxe\n" + "(W) GreatSword\n" + "(D) Show Weapon Descriptions");
 
                 ConsoleKey userKey = Console.ReadKey().Key;
 
@@ -115,6 +115,10 @@ namespace Dungeon
                         player.EquippedWeapon = spear1;
                         playerIsChoosingWeapon = false;
                         break;
+                        case ConsoleKey.C:
+                        player.EquippedWeapon = club1;
+                        playerIsChoosingWeapon = false;
+                        break;
                     case ConsoleKey.X:
                         player.EquippedWeapon = greatAxe1;
                         playerIsChoosingWeapon = false;
@@ -123,12 +127,28 @@ namespace Dungeon
                         player.EquippedWeapon = greatSword1;
                         playerIsChoosingWeapon = false;
                         break;
+                    case ConsoleKey.D:
+                        Console.WriteLine(sword1 + "\n");
+                        Console.WriteLine(knife1 + "\n");
+                        Console.WriteLine(axe1 + "\n");
+                        Console.WriteLine(bow1 + "\n");
+                        Console.WriteLine(spear1 + "\n");
+                        Console.WriteLine(club1 + "\n");
+                        Console.WriteLine(greatAxe1 + "\n");
+                        Console.WriteLine(greatSword1 + "\n");
+                        Console.WriteLine("If your weapon is One-Handed, you will be given a shield for your other hand. This will increase your Armor Class by 1.");
+                        break;
                     default:
                         Console.WriteLine("Input not understood. Please try again.");
                         break;
                 }
             } while (playerIsChoosingWeapon);
 
+            if (player.EquippedWeapon.IsTwoHanded == false)
+            {
+                Console.WriteLine("\n\nYour weapon only requires 1 hand. You will be given a shield for your other hand. This will increase your Armor Class by 1.");
+                player.Block++;
+            }
             bool playerIsChoosingRace = true;
 
             do
@@ -187,22 +207,7 @@ namespace Dungeon
                 }
             } while (playerIsChoosingRace);
 
-            
-
-
-            //Construct the Player object:
-            //NOTE: Pass in the user input string as the Name for the Player.
-
-
-            #endregion
-
-
-            //track the score:
             int score = 0;
-            //we will update this score whenever the player defeats a monster.
-            //the display the score to the player when they exit thw game.
-
-            #region Gameplay Loop
 
             bool playerIsAlive = true;//counter for gameplayloop
             bool playerIsFighting = true;//counter for the combat loop
@@ -246,21 +251,21 @@ namespace Dungeon
                         {
                             if (player.EquippedWeapon == sword1)
                             {
-                                Weapon sword2 = new Weapon("Master Sword", WeaponType.Sword, 30, 20, 35, false);
+                                Weapon sword2 = new Weapon("Master Sword", WeaponType.Sword, 35, 25, 35, false);
 
                                 Console.WriteLine("\nYou found the Master Sword!");
                                 player.EquippedWeapon = sword2;
                             }
                             else if (player.EquippedWeapon == knife1)
                             {
-                                Weapon knife2 = new Weapon("Shadowstep Dagger", WeaponType.Knife, 25, 20, 45, false);
+                                Weapon knife2 = new Weapon("Shadowstep Dagger", WeaponType.Knife, 30, 25, 45, false);
 
                                 Console.WriteLine("\nYou found the Shadowstep Dagger!");
                                 player.EquippedWeapon = knife2;
                             }
                             else if (player.EquippedWeapon == axe1)
                             {
-                                Weapon axe2 = new Weapon("Pic's Axe", WeaponType.Axe, 40, 25, 25, false);
+                                Weapon axe2 = new Weapon("Pic's Axe", WeaponType.Axe, 45, 30, 25, false);
 
                                 Console.WriteLine("\nYou found the Pic's Axe!");
                                 player.EquippedWeapon = axe2;
@@ -281,7 +286,7 @@ namespace Dungeon
                             }
                             else if (player.EquippedWeapon == club1)
                             {
-                                Weapon club2 = new Weapon("A Bonker", WeaponType.Club, 30, 20, 40, false);
+                                Weapon club2 = new Weapon("A Bonker", WeaponType.Club, 35, 25, 40, false);
 
                                 Console.WriteLine("\nYou found the a Bonker!");
                                 player.EquippedWeapon = club2;
@@ -312,21 +317,8 @@ namespace Dungeon
                 };
 
                 Console.ResetColor();
-                //any code in this loop will execute when the player kills a monster
 
-                #region Create Room & Monster
-
-                //Because we are doing the Console.WriteLine() inside
-                //the GetRoom() method, we can just call the method here.
                 GetRoom();
-
-                //However, an alternative solution is to return a string
-                //from GetRoom() and then pass that into the CW like:
-                //Console.WriteLine(GetRoom());
-                //Again, this would only work if you have string as
-                //the return type of GetRoom(). In my case, I return void,
-                //and write to the Console inside the method.
-
                 //Create Monster objects:
                 Bunny b1 = new Bunny();
                 Bunny b2 = new Bunny("Buneary", "From the Sinnoh Region!", 20, 20, 70, 1, 10, 5, true);
@@ -433,7 +425,6 @@ namespace Dungeon
                 #endregion
             } while (playerIsAlive);
 
-            #endregion
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.DarkRed;
             Console.WriteLine(@"        

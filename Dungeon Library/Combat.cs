@@ -23,14 +23,16 @@ namespace Dungeon_Library
             //if the attacker hits
             if (roll <= (attacker.CalcHitChance()))
             {
-                int damageDealt = attacker.CalcDamage() - defender.CalcBlock();
+                int attackedFor = attacker.CalcDamage();
+                int damageBlocked = defender.CalcBlock();
+                int damageDealt = attackedFor - damageBlocked;
 
                 defender.Life -= damageDealt;
 
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.WriteLine($"{attacker.Name} attacked for {attacker.CalcDamage()}!");
+                Console.WriteLine($"{attacker.Name} attacked for {attackedFor}!");
                 Console.ForegroundColor = ConsoleColor.DarkGray;
-                Console.WriteLine($"{defender.Name} blocked {defender.CalcBlock()} damage!");
+                Console.WriteLine($"{defender.Name} blocked {damageBlocked} damage!");
                 Console.ForegroundColor = ConsoleColor.DarkRed;
                 Console.WriteLine($"{defender.Name} takes {damageDealt} damage!\n");
 

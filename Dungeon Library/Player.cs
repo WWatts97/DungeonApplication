@@ -9,16 +9,16 @@ namespace Dungeon_Library
     public sealed class Player : Character
     {
         //FIELDS
-
+        private Weapon _offHandWeapon;
         //PROPS
         //UNIQUE props of player :
         public Race Race { get; set; }
         public Weapon EquippedWeapon { get; set; }
 
-        public Player(string name, int hitChance, int block, int maxLife, int life, Race race, Weapon equippedWeapon) : base(name,hitChance, block, maxLife, life)
+        public Player(string name, int hitChance, int block, int maxLife, int life, Race race, Weapon equippedWeapon) : base(name, hitChance, block, maxLife, life)
         {
-            Race= race;
-            EquippedWeapon= equippedWeapon;
+            Race = race;
+            EquippedWeapon = equippedWeapon;
         }
 
         public override string ToString()
@@ -53,7 +53,7 @@ namespace Dungeon_Library
                     break;
             }
             Console.ForegroundColor = ConsoleColor.Blue;
-            return base.ToString() + "Race: " + Race + "\nDescription: " + raceDescription + "\n\n" + EquippedWeapon + "\nCurrent Hit Chance: " + (HitChance + EquippedWeapon.BonusHitChance) + "%";
+            return base.ToString() + "Race: " + Race + "\nDescription: " + raceDescription + "\n\n" + EquippedWeapon + "\nCurrent Hit Chance: " + (HitChance + EquippedWeapon.BonusHitChance) + "%\n";
         }
 
         public override int CalcDamage()
