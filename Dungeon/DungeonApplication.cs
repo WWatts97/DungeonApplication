@@ -9,7 +9,6 @@ namespace Dungeon
     {
         static void Main(string[] args)
         {
-            #region Introduction
             Console.WriteLine(@"Loading...10%█▒▒▒▒▒▒▒▒▒");
             Thread.Sleep(1);//TODO set to 1000
             Console.Clear();
@@ -59,13 +58,8 @@ namespace Dungeon
                                           `-..______..-'");
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
-            Console.Clear();
 
-            Console.WriteLine("Please enter your character's name.");
-
-            string playerName = Console.ReadLine();
-            Console.Clear();
-            Console.WriteLine($"Your champion's name is {playerName}");
+            
             //Base Weapon Objects
             Weapon sword1 = new Weapon("Knight's Broadsword", WeaponType.Sword, 25, 15, 30,false);
             Weapon knife1 = new Weapon("Assassin's Dagger", WeaponType.Knife, 20, 15, 40, false);
@@ -78,181 +72,192 @@ namespace Dungeon
             //Race Objects
             Race human = new Race(RaceType.Human, "", "");
             Race elf = new Race(RaceType.Elf, "", "");
-            Race dragonKin = new Race(RaceType.DragonKin, "", "");
-            Race halfDemon = new Race(RaceType.HalfDemon, "", "");
+            Race dragonKin = new Race(RaceType.Draconoid, "", "");
+            Race halfDemon = new Race(RaceType.Half_Demon, "", "");
             Race merfolk = new Race(RaceType.Merfolk, "", "");
-            Race angelKin = new Race(RaceType.AngelKin, "", "");
-            Race giant = new Race(RaceType.Giant, "", "");
+            Race angelKin = new Race(RaceType.Half_Angel, "", "");
+            Race giant = new Race(RaceType.Goliath, "", "");
             Race vampire = new Race(RaceType.Vampire, "", "");
 
+
+            Player player = new Player("", 50, 0, 100, 100, human, sword1);
+
             bool playerIsChoosingWeapon = true;
-            
-            Player player = new Player(playerName, 50, 0, 100, 100, human, sword1);
-            do
-            {
-                Console.WriteLine("\n Choose your weapon:\n" + "(S) Sword\n" + "(K) Knife\n" + "(A) Axe\n" + "(B) Bow\n" + "(P) Spear\n" + "(C) Club\n" + "(X) GreatAxe\n" + "(W) GreatSword\n" + "(Z) Show Weapon Descriptions");
-
-                ConsoleKey userKey = Console.ReadKey().Key;
-                Console.Clear();
-                switch (userKey)
-                {
-                    case ConsoleKey.S:
-                        player.EquippedWeapon = sword1;
-                        playerIsChoosingWeapon = false;
-                        break;
-                    case ConsoleKey.K:
-                        player.EquippedWeapon = knife1;
-                        playerIsChoosingWeapon = false;
-                        break;
-                        case ConsoleKey.A:
-                        player.EquippedWeapon = axe1;
-                        playerIsChoosingWeapon = false;
-                        break;
-                        case ConsoleKey.B:
-                        player.EquippedWeapon = bow1;
-                        playerIsChoosingWeapon = false;
-                        break;
-                        case ConsoleKey.P:
-                        player.EquippedWeapon = spear1;
-                        playerIsChoosingWeapon = false;
-                        break;
-                        case ConsoleKey.C:
-                        player.EquippedWeapon = club1;
-                        playerIsChoosingWeapon = false;
-                        break;
-                    case ConsoleKey.X:
-                        player.EquippedWeapon = greatAxe1;
-                        playerIsChoosingWeapon = false;
-                        break;
-                    case ConsoleKey.W:
-                        player.EquippedWeapon = greatSword1;
-                        playerIsChoosingWeapon = false;
-                        break;
-                    case ConsoleKey.Z:
-                        Console.WriteLine("\n" + sword1 + "\n");
-                        Console.WriteLine(knife1 + "\n");
-                        Console.WriteLine(axe1 + "\n");
-                        Console.WriteLine(bow1 + "\n");
-                        Console.WriteLine(spear1 + "\n");
-                        Console.WriteLine(club1 + "\n");
-                        Console.WriteLine(greatAxe1 + "\n");
-                        Console.WriteLine(greatSword1 + "\n");
-                        Console.WriteLine("If your weapon is one-handed, you will be given a shield for your other hand. This will increase your Armor Class by 1.");
-                        break;
-                    default:
-                        Console.WriteLine("Input not understood. Please try again.");
-                        break;
-                }
-            } while (playerIsChoosingWeapon);
-            Console.WriteLine($"Your champion's name is {playerName}");
-            Console.WriteLine($"You have chosen {player.EquippedWeapon.Name}");
-            if (player.EquippedWeapon.IsTwoHanded == false)
-            {
-                Console.WriteLine("Your weapon only requires 1 hand. You will be given a shield for your other hand. This will increase your Armor Class by 1.");
-                player.Block++;
-            }
+            bool playerIsCreatingPlayer = true;
             bool playerIsChoosingRace = true;
+            bool playerIsConfirmingStats = true;
             do
             {
-                Console.WriteLine("\nChoose a Race:" +
-                "\n(E) Elf" +
-                "\n(H) Human" +
-                "\n(M) Merfolk" +
-                "\n(D) Draconoid" +
-                "\n(A) Half-Angel" +
-                "\n(V) Vampire" +
-                "\n(G) Goliath" +
-                "\n(N) Half-Demon" +
-                "\n(Z) Show race descriptions\n");
+                Console.Clear();
+                Console.WriteLine("Please enter your character's name.");
 
-                ConsoleKey raceCoice = Console.ReadKey().Key;
+                string playerName = Console.ReadLine();
+                Console.Clear();
+                player.Name = playerName;
                 
-
-                switch (raceCoice)
+                do
                 {
-                    case ConsoleKey.E:
-                        player.Race = elf;
-                        playerIsChoosingRace = false;
-                        //TODO custom attributes for each class
-                        break;
-                        case ConsoleKey.H:
-                        player.Race = human;
-                        playerIsChoosingRace = false;
-                        break;
-                        case ConsoleKey.M:
-                        player.Race = merfolk;
-                        playerIsChoosingRace = false;
-                        break;
-                        case ConsoleKey.V:
-                        player.Race = vampire;
-                        playerIsChoosingRace = false;
-                        break;
+                    Console.WriteLine($"Your champion's name is {player.Name}.");
+                    Console.WriteLine("\nChoose your weapon:\n" + "(S) Sword\n" + "(K) Knife\n" + "(A) Axe\n" + "(B) Bow\n" + "(P) Spear\n" + "(C) Club\n" + "(X) GreatAxe\n" + "(W) GreatSword\n" + "(Z) Show Weapon Descriptions");
+
+                    ConsoleKey userKey = Console.ReadKey().Key;
+                    Console.Clear();
+                    switch (userKey)
+                    {
+                        case ConsoleKey.S:
+                            player.EquippedWeapon = sword1;
+                            playerIsChoosingWeapon = false;
+                            break;
+                        case ConsoleKey.K:
+                            player.EquippedWeapon = knife1;
+                            playerIsChoosingWeapon = false;
+                            break;
                         case ConsoleKey.A:
-                        player.Race = angelKin;
-                        playerIsChoosingRace = false;
-                        break;
+                            player.EquippedWeapon = axe1;
+                            playerIsChoosingWeapon = false;
+                            break;
+                        case ConsoleKey.B:
+                            player.EquippedWeapon = bow1;
+                            playerIsChoosingWeapon = false;
+                            break;
+                        case ConsoleKey.P:
+                            player.EquippedWeapon = spear1;
+                            playerIsChoosingWeapon = false;
+                            break;
+                        case ConsoleKey.C:
+                            player.EquippedWeapon = club1;
+                            playerIsChoosingWeapon = false;
+                            break;
+                        case ConsoleKey.X:
+                            player.EquippedWeapon = greatAxe1;
+                            playerIsChoosingWeapon = false;
+                            break;
+                        case ConsoleKey.W:
+                            player.EquippedWeapon = greatSword1;
+                            playerIsChoosingWeapon = false;
+                            break;
+                        case ConsoleKey.Z:
+                            Console.WriteLine("\n" + sword1 + "\n");
+                            Console.WriteLine(knife1 + "\n");
+                            Console.WriteLine(axe1 + "\n");
+                            Console.WriteLine(bow1 + "\n");
+                            Console.WriteLine(spear1 + "\n");
+                            Console.WriteLine(club1 + "\n");
+                            Console.WriteLine(greatAxe1 + "\n");
+                            Console.WriteLine(greatSword1 + "\n");
+                            Console.WriteLine("If your weapon is one-handed, you will be given a shield for your other hand. This will increase your Armor Class by 1.");
+                            Console.WriteLine("\n\nPresss any key to continue.\n");
+                            Console.ReadKey();
+                            Console.Clear();
+                            break;
+                        default:
+                            Console.WriteLine("Input not understood. Please try again.\n");
+                            playerIsChoosingWeapon = true;
+                            break;
+                    }
+                } while (playerIsChoosingWeapon);
+
+                Console.Clear();
+                do
+                {
+                    Console.WriteLine($"Your champion's name is {player.Name}");
+                    Console.WriteLine($"You have chosen {player.EquippedWeapon.Name}");
+                    if (player.EquippedWeapon.IsTwoHanded == false)
+                    {
+                        Console.WriteLine("Your weapon only requires 1 hand. You will be given a shield for your other hand. This will increase your Armor Class by 1.");
+                        player.Block++;
+                    }
+                    Console.WriteLine("\nChoose a Race:" +
+                    "\n(E) Elf" +
+                    "\n(H) Human" +
+                    "\n(M) Merfolk" +
+                    "\n(D) Draconoid" +
+                    "\n(A) Half-Angel" +
+                    "\n(V) Vampire" +
+                    "\n(G) Goliath" +
+                    "\n(N) Half-Demon" +
+                    "\n(Z) Show race descriptions\n");
+                    ConsoleKey raceCoice = Console.ReadKey().Key;
+                    Console.Clear();
+                    switch (raceCoice)
+                    {
+                        case ConsoleKey.E:
+                            player.Race = elf;
+                            playerIsChoosingRace = false;
+                            //TODO custom attributes for each class
+                            break;
+                        case ConsoleKey.H:
+                            player.Race = human;
+                            playerIsChoosingRace = false;
+                            break;
+                        case ConsoleKey.M:
+                            player.Race = merfolk;
+                            playerIsChoosingRace = false;
+                            break;
+                        case ConsoleKey.V:
+                            player.Race = vampire;
+                            playerIsChoosingRace = false;
+                            break;
+                        case ConsoleKey.A:
+                            player.Race = angelKin;
+                            playerIsChoosingRace = false;
+                            break;
                         case ConsoleKey.D:
-                        player.Race = dragonKin;
-                        playerIsChoosingRace = false;
-                        break;
-                    case ConsoleKey.G:
-                        player.Race = giant;
-                        playerIsChoosingRace = false;
-                        break;
-                    case ConsoleKey.N:
-                        player.Race = halfDemon;
-                        playerIsChoosingRace = false;
-                        break;
-                    case ConsoleKey.Z:
-                        Console.WriteLine(elf + "\n");
-                        Console.WriteLine(human + "\n");
-                        Console.WriteLine(merfolk + "\n");
-                        Console.WriteLine(dragonKin + "\n");
-                        Console.WriteLine(angelKin + "\n");
-                        Console.WriteLine(vampire + "\n");
-                        Console.WriteLine(giant + "\n");
-                        Console.WriteLine(halfDemon + "\n");
-                        break;
-                    default:
-                        Console.WriteLine("Input not understood. Please try again.");
-                        break;
-                }
-            } while (playerIsChoosingRace);
-            Console.Clear();
-            Console.WriteLine($"Your champion's name is {player.Name}");
-            Console.WriteLine($"You have chosen {player.EquippedWeapon.Name}");
-            Console.WriteLine($"The race you have chosen for {player.Name} is {player.Race.RaceType}");
-            Thread.Sleep(2000);
-            Console.Clear();
-            if (player.Race.RaceType == RaceType.Elf)
-            {
-                Console.WriteLine($"Creating an {player.Race.RaceType} named {player.Name} wielding {player.EquippedWeapon.Name}" + (player.EquippedWeapon.IsTwoHanded ? "." : " and a shield."));
-            }
-            else if (player.Race.RaceType == RaceType.AngelKin)
-            {
-                Console.WriteLine($"Creating an {player.Race.RaceType} named {player.Name} wielding {player.EquippedWeapon.Name}" + (player.EquippedWeapon.IsTwoHanded ? "." : " and a shield."));
-            }
-            else
-            {
-                Console.WriteLine($"Creating a {player.Race.RaceType} named {player.Name} wielding {player.EquippedWeapon.Name}" + (player.EquippedWeapon.IsTwoHanded ? "." : " and a shield."));
-            }
-            Thread.Sleep(2000);
-            Console.Clear();
-            Console.WriteLine(@"Loading...10%█▒▒▒▒▒▒▒▒▒");
-            Thread.Sleep(500);
-            Console.Clear();
-            Console.WriteLine(@"Loading...30%███▒▒▒▒▒▒▒");
-            Thread.Sleep(500);
-            Console.Clear();
-            Console.WriteLine(@"Loading...50%█████▒▒▒▒▒");
-            Thread.Sleep(500);
-            Console.Clear();
-            Console.WriteLine(@"Loading...80%███████▒▒▒");
-            Thread.Sleep(500);
-            Console.Clear();
-            Console.WriteLine(@"Loading...100%██████████");
-            Thread.Sleep(500);
-            Console.Clear();
+                            player.Race = dragonKin;
+                            playerIsChoosingRace = false;
+                            break;
+                        case ConsoleKey.G:
+                            player.Race = giant;
+                            playerIsChoosingRace = false;
+                            break;
+                        case ConsoleKey.N:
+                            player.Race = halfDemon;
+                            playerIsChoosingRace = false;
+                            break;
+                        case ConsoleKey.Z:
+                            Console.WriteLine(elf + "\n");
+                            Console.WriteLine(human + "\n");
+                            Console.WriteLine(merfolk + "\n");
+                            Console.WriteLine(dragonKin + "\n");
+                            Console.WriteLine(angelKin + "\n");
+                            Console.WriteLine(vampire + "\n");
+                            Console.WriteLine(giant + "\n");
+                            Console.WriteLine(halfDemon + "\n");
+                            Console.WriteLine("\n\nPresss any key to continue.\n");
+                            Console.ReadKey();
+                            Console.Clear();
+                            playerIsChoosingRace = true;
+                            break;
+                        default:
+                            Console.WriteLine("Input not understood. Please try again.\n");
+                            playerIsChoosingRace = true;
+                            break;
+                    }
+                } while (playerIsChoosingRace);
+                do
+                {
+                    Console.WriteLine($"This is your character.\n\nName: {player.Name}\nWeapon: {(player.EquippedWeapon.IsTwoHanded ? $"{player.EquippedWeapon.Name}" : $"{player.EquippedWeapon.Name} and a shield.")}\nRace: {player.Race.RaceType}");
+                    Console.WriteLine("Are these the characteristics you want? (Y/N)");
+                    ConsoleKey playerCreate = Console.ReadKey().Key;
+                    switch (playerCreate)
+                    {
+                        case ConsoleKey.Y:
+                            playerIsConfirmingStats = false;
+                            playerIsCreatingPlayer = false;
+                            break;
+                        case ConsoleKey.N:
+                            playerIsConfirmingStats = false;
+                            playerIsCreatingPlayer = true;
+                            break;
+                        default:
+                            Console.Clear();
+                            Console.WriteLine("Input not understood. Please try again.\n");
+                            playerIsConfirmingStats = true;
+                            break;
+                    }
+                } while (playerIsConfirmingStats);
+            } while (playerIsCreatingPlayer);
+           
             int score = 0;
 
             bool playerIsAlive = true;//counter for gameplayloop
@@ -390,8 +395,6 @@ namespace Dungeon
 
                 Console.Write("\nYou encountered"); Console.ForegroundColor = ConsoleColor.Red; Console.Write(" {0}!" ,monster.Name); Console.ResetColor();
 
-                #endregion
-
                 #region Menu Loop
 
                 do
@@ -459,7 +462,7 @@ namespace Dungeon
                     if (player.Life <= 0)
                     {
                         Console.Clear();
-                        Console.ForegroundColor = ConsoleColor.Blue; Console.Write(playerName); Console.ForegroundColor = ConsoleColor.Red; Console.Write(" has died!"); Console.ResetColor();
+                        Console.ForegroundColor = ConsoleColor.Blue; Console.Write(player.Name); Console.ForegroundColor = ConsoleColor.Red; Console.Write(" has died!"); Console.ResetColor();
                         Thread.Sleep(1000);
                         playerIsFighting = false;
                         playerIsAlive = false;

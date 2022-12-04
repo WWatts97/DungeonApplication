@@ -17,9 +17,9 @@ namespace Dungeon_Library
         Human,
         Merfolk,
         Vampire,
-        AngelKin,
-        DragonKin,
-        Giant,
-        HalfDemon
+        Half_Angel,
+        Draconoid,
+        Goliath,
+        Half_Demon
     }
 }
