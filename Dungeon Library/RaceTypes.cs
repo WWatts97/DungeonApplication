@@ -14,12 +14,12 @@ namespace Dungeon_Library
     public enum RaceType
     {
         Elf,
-        Human,
         Merfolk,
         Vampire,
-        Half_Angel,
         Draconoid,
         Goliath,
-        Half_Demon
+        Zombie,
+        Goblin,
+        Werewolf,
     }
 }

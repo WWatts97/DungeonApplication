@@ -29,13 +29,12 @@ namespace DungeonLibrary
                 }
             }
         }
-            public string Description { get; set; }
-
+        public string Description { get; set; }
 
         //CTOR
         public Monster() { }
 
-        public Monster(string name, string description, int hitChance, int block, int life, int maxLife, int maxDmg, int minDmg) : base(name, hitChance, block, maxLife, life)
+        public Monster(string name, string description, int hitChance, int block, int life, int maxLife, int maxDmg, int minDmg, Race race) : base(name, hitChance, block, maxLife, life, race)
         {
             Description = description;
             MaxDmg = maxDmg;
@@ -47,8 +46,8 @@ namespace DungeonLibrary
         {
             Console.ForegroundColor = ConsoleColor.DarkRed;
 
-            return base.ToString() + $"Max Damage : {MaxDmg}\nMin Damage {MinDmg}" +
-                $"\nDescription: {Description}";//Add the unique properties to the ToString();
+            return base.ToString() + $"\nMax Damage : {MaxDmg}\nMin Damage: {MinDmg}" +
+                $"\nMonster Description: {Description}";
         }
     
 

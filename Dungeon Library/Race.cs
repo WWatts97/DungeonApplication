@@ -19,6 +19,6 @@ namespace Dungeon_Library
             Bonus = bonus;
         }
         public override string ToString() =>
-         string.Format($"Race: {RaceType}\nDescription: {Description}\nBonus: {Bonus}");
+         string.Format($"Race: {RaceType}\nRace Attributes: {Bonus}\nRace Description: {Description}");
     }
 }

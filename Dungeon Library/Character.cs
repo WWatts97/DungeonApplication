@@ -24,17 +24,20 @@
                 }
             }
         }
+        public Race Race { get; set; }
+
         //ctors
 
         public Character() { }
 
-        public Character(string name, int hitChance, int block, int maxLife, int life)
+        public Character(string name, int hitChance, int block, int maxLife, int life, Race race)
         {
             Name = name;
             HitChance = hitChance;
             Block = block;
             MaxLife = maxLife;
             Life = life;
+            Race = race;
         }
         //methods
         public virtual int CalcBlock()
@@ -83,16 +86,17 @@
         public override string ToString()
         {
             return string.Format("--==Character Stats==--\n" +
-                "Character Name: {0}\n" +
-                "Max Life: {1}\n" +
+                "Name: {0}\n" +
                 "Current Life: {2}\n" +
+                "Max Life: {1}\n" +
                 "Base Hit Chance: {3}%\n" +
-                "Armor Class: {4}\n",
+                "Armor Class: {4}\n{5}",
                 Name,
                 MaxLife,
                 Life,
                 HitChance,
-                Block);
+                Block,
+                Race);
         }
     }//end character class
 }

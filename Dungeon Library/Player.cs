@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,19 +13,17 @@ namespace Dungeon_Library
 
         //PROPS
         //UNIQUE props of player :
-        public Race Race { get; set; }
         public Weapon EquippedWeapon { get; set; }
 
-        public Player(string name, int hitChance, int block, int maxLife, int life, Race race, Weapon equippedWeapon) : base(name, hitChance, block, maxLife, life)
+        public Player(string name, int hitChance, int block, int maxLife, int life, Race race, Weapon equippedWeapon) : base(name, hitChance, block, maxLife, life, race)
         {
-            Race = race;
             EquippedWeapon = equippedWeapon;
         }
 
         public override string ToString()
         {
             Console.ForegroundColor = ConsoleColor.Blue;
-            return base.ToString() + Race + "\n\n" + EquippedWeapon + "\nCurrent Hit Chance: " + (HitChance + EquippedWeapon.BonusHitChance) + "%\n";
+            return base.ToString() + "\n\n" + EquippedWeapon + "\nCurrent Hit Chance: " + (HitChance + EquippedWeapon.BonusHitChance) + "%";
         }
 
         public override int CalcDamage()
