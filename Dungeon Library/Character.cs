@@ -1,6 +1,6 @@
 ﻿namespace Dungeon_Library
 {
-    public abstract class Character
+    public abstract class Character : ICombatable
     {
         //fields
         private int _life;

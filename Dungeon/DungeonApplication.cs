@@ -102,212 +102,215 @@ namespace Dungeon
             bool playerIsCreatingPlayer = true;
             bool playerIsChoosingRace = true;
             bool playerIsConfirmingStats = true;
+            bool playerWantsToPlay = true;
             #endregion
             do
             {
-                #region Selecting Name
-                Console.Clear();
-                Console.WriteLine("Please enter your character's name.");
-                string playerName = Console.ReadLine();
-                Console.Clear();
-                player.Name = playerName;
-                #endregion
                 do
                 {
-                    #region Selecting Weapon
-                    Console.WriteLine($"Your champion's name is {player.Name}.");
-                    Console.WriteLine("\nChoose your weapon:\n" + "(S) Sword\n" + "(K) Knife\n" + "(A) Axe\n" + "(B) Bow\n" + "(P) Spear\n" + "(C) Club\n" + "(X) GreatAxe\n" + "(W) GreatSword\n" + "(Z) Show Weapon Descriptions");
-
-                    ConsoleKey userKey = Console.ReadKey().Key;
+                    #region Selecting Name
                     Console.Clear();
-                    switch (userKey)
-                    {
-                        case ConsoleKey.S:
-                            player.EquippedWeapon = sword1;
-                            playerIsChoosingWeapon = false;
-                            break;
-                        case ConsoleKey.K:
-                            player.EquippedWeapon = knife1;
-                            playerIsChoosingWeapon = false;
-                            break;
-                        case ConsoleKey.A:
-                            player.EquippedWeapon = axe1;
-                            playerIsChoosingWeapon = false;
-                            break;
-                        case ConsoleKey.B:
-                            player.EquippedWeapon = bow1;
-                            playerIsChoosingWeapon = false;
-                            break;
-                        case ConsoleKey.P:
-                            player.EquippedWeapon = spear1;
-                            playerIsChoosingWeapon = false;
-                            break;
-                        case ConsoleKey.C:
-                            player.EquippedWeapon = club1;
-                            playerIsChoosingWeapon = false;
-                            break;
-                        case ConsoleKey.X:
-                            player.EquippedWeapon = greatAxe1;
-                            playerIsChoosingWeapon = false;
-                            break;
-                        case ConsoleKey.W:
-                            player.EquippedWeapon = greatSword1;
-                            playerIsChoosingWeapon = false;
-                            break;
-                        case ConsoleKey.Z:
-                            Console.WriteLine("\n" + sword1 + "\n");
-                            Console.WriteLine(knife1 + "\n");
-                            Console.WriteLine(axe1 + "\n");
-                            Console.WriteLine(bow1 + "\n");
-                            Console.WriteLine(spear1 + "\n");
-                            Console.WriteLine(club1 + "\n");
-                            Console.WriteLine(greatAxe1 + "\n");
-                            Console.WriteLine(greatSword1 + "\n");
-                            Console.WriteLine("If your weapon is one-handed, you will be given a shield for your other hand. This will increase your Armor Class by 1.");
-                            Console.WriteLine("\n\nPresss any key to continue.\n");
-                            Console.ReadKey();
-                            Console.Clear();
-                            break;
-                        default:
-                            Console.WriteLine("Input not understood. Please try again.\n");
-                            playerIsChoosingWeapon = true;
-                            break;
-                    }
-                    #endregion
-                } while (playerIsChoosingWeapon);
-                Console.Clear();
-                do
-                {
-                    #region Selecting Race
-                    Console.WriteLine($"Your champion's name is {player.Name}");
-                    Console.WriteLine($"You have chosen {player.EquippedWeapon.Name}");
-                    if (player.EquippedWeapon.IsTwoHanded == false)
-                    {
-                        Console.WriteLine("Your weapon only requires 1 hand. You will be given a shield for your other hand. This will increase your Armor Class by 1.");
-                        player.Block++;
-                    }
-                    Console.WriteLine("\nChoose a Race:" +
-                    "\n(E) Elf" +
-                    "\n(M) Merfolk" +
-                    "\n(D) Draconoid" +
-                    "\n(V) Vampire" +
-                    "\n(G) Goliath" +
-                    "\n(Z) Show race descriptions\n");
-                    ConsoleKey raceCoice = Console.ReadKey().Key;
+                    Console.WriteLine("Please enter your character's name.");
+                    string playerName = Console.ReadLine();
                     Console.Clear();
-                    switch (raceCoice)
-                    {
-                        case ConsoleKey.E:
-                            player.Race = elf;
-                            if (player.EquippedWeapon.IsTwoHanded == false)
-                            {
-                                player.EquippedWeapon.MaxDamage += 5;
-                                player.EquippedWeapon.MinDamage += 5;
-                            }
-                            playerIsChoosingRace = false;
-                            break;
-                        case ConsoleKey.M:
-                            player.Race = merfolkPlayer;
-                            playerIsChoosingRace = false;
-                            break;
-                        case ConsoleKey.V:
-                            player.Race = vampirePlayer;
-                            playerIsChoosingRace = false;
-                            break;
-                        case ConsoleKey.D:
-                            player.Race = dragonKin;
-                            player.EquippedWeapon.MaxDamage += 10;
-                            player.EquippedWeapon.MinDamage+= 10;
-                            playerIsChoosingRace = false;
-                            break;
-                        case ConsoleKey.G:
-                            player.Race = giant;
-                            player.MaxLife += 50;
-                            player.Life += 50;
-                            playerIsChoosingRace = false;
-                            break;
-                        case ConsoleKey.Z:
-                            Console.WriteLine(elf + "\n");
-                            Console.WriteLine(merfolkPlayer + "\n");
-                            Console.WriteLine(dragonKin + "\n");
-                            Console.WriteLine(vampirePlayer + "\n");
-                            Console.WriteLine(giant + "\n");
-                            Console.WriteLine("\n\nPresss any key to continue.\n");
-                            Console.ReadKey();
-                            Console.Clear();
-                            playerIsChoosingRace = true;
-                            break;
-                        default:
-                            Console.WriteLine("Input not understood. Please try again.\n");
-                            playerIsChoosingRace = true;
-                            break;
-                    }
-                    
+                    player.Name = playerName;
                     #endregion
-                } while (playerIsChoosingRace);
-                do
-                {
-                    Console.WriteLine($"This is your character.\n\nName: {player.Name}\nWeapon: {(player.EquippedWeapon.IsTwoHanded ? $"{player.EquippedWeapon.Name}" : $"{player.EquippedWeapon.Name} and a shield.")}\nRace: {player.Race.RaceType}");
-                    Console.WriteLine("Are these the characteristics you want? (Y/N)");
-                    ConsoleKey playerCreate = Console.ReadKey().Key;
-                    switch (playerCreate)
+                    do
                     {
-                        case ConsoleKey.Y:
-                            playerIsConfirmingStats = false;
-                            playerIsCreatingPlayer = false;
-                            break;
-                        case ConsoleKey.N:
-                            playerIsConfirmingStats = false;
-                            playerIsCreatingPlayer = true;
-                            break;
-                        default:
-                            Console.Clear();
-                            Console.WriteLine("Input not understood. Please try again.\n");
-                            playerIsConfirmingStats = true;
-                            break;
-                    }
-                } while (playerIsConfirmingStats);
-                if (player.Race.RaceType == RaceType.Elf && player.EquippedWeapon.IsTwoHanded == true)
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("\nAn elf cannot use a two-handed weapon! Please choose again.");
-                    playerIsCreatingPlayer = true;
-                    Console.ResetColor();
-                    Console.ReadKey();
-                }
-            } while (playerIsCreatingPlayer);
+                        #region Selecting Weapon
+                        Console.WriteLine($"Your champion's name is {player.Name}.");
+                        Console.WriteLine("\nChoose your weapon:\n" + "(S) Sword\n" + "(K) Knife\n" + "(A) Axe\n" + "(B) Bow\n" + "(P) Spear\n" + "(C) Club\n" + "(X) GreatAxe\n" + "(W) GreatSword\n" + "(Z) Show Weapon Descriptions");
 
-            int score = 0;
-            bool playerIsAlive = true;//counter for gameplayloop
-            bool playerIsFighting = true;//counter for the combat loop
-            int lvlUp1 = 0;
-            int lvlUp2 = 0;
-            int lvlUp3 = 0;
-            short potions = 3;
-            
-            do//start of gameplay loop
-            {
-                #region CreateMonsterObjects
-                //Create Monster objects:
-                Goblin g1 = new Goblin("Goblin", "Ugly, tiny, fast, and dangerous!", 30, 30, 80, 0, 10, 5, goblin, true);
-                Goblin g2 = new Goblin("Bugbear", "Hairy goblinoid born for battle and mayhem.", 50, 50, 85, 1, 20, 10, goblin, true);
-                Goblin g3 = new Goblin("Orc", "Orcs are a brutish, aggressive, ugly, and malevolent.", 70, 70, 90, 2, 35, 15, goblin, true);
-                Zombie z1 = new Zombie("Zombie", "Falling apart at the seams.", 3, 3, 70, 0, 15, 10, zombie, true);
-                Zombie z2 = new Zombie("Undead", "Reanimated by supernatural means, technology, or disease.", 4, 4, 75, 0, 25, 15, zombie, true);
-                Zombie z3 = new Zombie("Redead", "Zombie-like creature living in crypts or dark and haunted places.", 5, 5, 80, 0, 35, 25, zombie, true);
-                Merfolk m1 = new Merfolk("Merfolk", "Something smells fishy.", 50, 50, 80, 1, 20, 10, merfolkMonster, true);
-                Merfolk m2 = new Merfolk("Waveraker", "As it thrashes, it creates the sound of thunder.", 70, 70, 85, 2, 35, 20, merfolkMonster, true);
-                Merfolk m3 = new Merfolk("Whirlthrasher", "Master of waves and crusher of storms.", 90, 90, 90, 3, 55, 35, merfolkMonster, true);
-                Vampire v1 = new Vampire("Vampire", "He could use some sun.", 40, 40, 95, 1, 30, 20, vampireMonster, true);
-                Vampire v2 = new Vampire("Sun-Cursed", "Forever locked from the charity of light.", 50, 50, 95, 2, 40, 30, vampireMonster, true);
-                Vampire v3 = new Vampire("Markov", "A direct descendant of Edgar himself.", 60, 60, 95, 3, 50, 40, vampireMonster, true);
-                Werewolf w1 = new Werewolf("Werewolf", "Good dog... Bad dog?", 40, 40, 85, 0, 25, 10, werewolf, false);
-                Werewolf w2 = new Werewolf("Lycan", "A massive warrior, and a monsterous wolf.", 60, 60, 90, 1, 40, 25, werewolf, false);
-                Werewolf w3 = new Werewolf("Ulrich", "Master of transformation. Only a monster now.", 80, 80, 95, 2, 55, 40, werewolf, true);
-                #endregion
-                #region MonserCollection
-                Monster[] monsters =
-               {
+                        ConsoleKey userKey = Console.ReadKey().Key;
+                        Console.Clear();
+                        switch (userKey)
+                        {
+                            case ConsoleKey.S:
+                                player.EquippedWeapon = sword1;
+                                playerIsChoosingWeapon = false;
+                                break;
+                            case ConsoleKey.K:
+                                player.EquippedWeapon = knife1;
+                                playerIsChoosingWeapon = false;
+                                break;
+                            case ConsoleKey.A:
+                                player.EquippedWeapon = axe1;
+                                playerIsChoosingWeapon = false;
+                                break;
+                            case ConsoleKey.B:
+                                player.EquippedWeapon = bow1;
+                                playerIsChoosingWeapon = false;
+                                break;
+                            case ConsoleKey.P:
+                                player.EquippedWeapon = spear1;
+                                playerIsChoosingWeapon = false;
+                                break;
+                            case ConsoleKey.C:
+                                player.EquippedWeapon = club1;
+                                playerIsChoosingWeapon = false;
+                                break;
+                            case ConsoleKey.X:
+                                player.EquippedWeapon = greatAxe1;
+                                playerIsChoosingWeapon = false;
+                                break;
+                            case ConsoleKey.W:
+                                player.EquippedWeapon = greatSword1;
+                                playerIsChoosingWeapon = false;
+                                break;
+                            case ConsoleKey.Z:
+                                Console.WriteLine("\n" + sword1 + "\n");
+                                Console.WriteLine(knife1 + "\n");
+                                Console.WriteLine(axe1 + "\n");
+                                Console.WriteLine(bow1 + "\n");
+                                Console.WriteLine(spear1 + "\n");
+                                Console.WriteLine(club1 + "\n");
+                                Console.WriteLine(greatAxe1 + "\n");
+                                Console.WriteLine(greatSword1 + "\n");
+                                Console.WriteLine("If your weapon is one-handed, you will be given a shield for your other hand. This will increase your Armor Class by 1.");
+                                Console.WriteLine("\n\nPresss any key to continue.\n");
+                                Console.ReadKey();
+                                Console.Clear();
+                                break;
+                            default:
+                                Console.WriteLine("Input not understood. Please try again.\n");
+                                playerIsChoosingWeapon = true;
+                                break;
+                        }
+                        #endregion
+                    } while (playerIsChoosingWeapon);
+                    Console.Clear();
+                    do
+                    {
+                        #region Selecting Race
+                        Console.WriteLine($"Your champion's name is {player.Name}");
+                        Console.WriteLine($"You have chosen {player.EquippedWeapon.Name}");
+                        if (player.EquippedWeapon.IsTwoHanded == false)
+                        {
+                            Console.WriteLine("Your weapon only requires 1 hand. You will be given a shield for your other hand. This will increase your Armor Class by 1.");
+                            player.Block++;
+                        }
+                        Console.WriteLine("\nChoose a Race:" +
+                        "\n(E) Elf" +
+                        "\n(M) Merfolk" +
+                        "\n(D) Draconoid" +
+                        "\n(V) Vampire" +
+                        "\n(G) Goliath" +
+                        "\n(Z) Show race descriptions\n");
+                        ConsoleKey raceCoice = Console.ReadKey().Key;
+                        Console.Clear();
+                        switch (raceCoice)
+                        {
+                            case ConsoleKey.E:
+                                player.Race = elf;
+                                if (player.EquippedWeapon.IsTwoHanded == false)
+                                {
+                                    player.EquippedWeapon.MaxDamage += 5;
+                                    player.EquippedWeapon.MinDamage += 5;
+                                }
+                                playerIsChoosingRace = false;
+                                break;
+                            case ConsoleKey.M:
+                                player.Race = merfolkPlayer;
+                                playerIsChoosingRace = false;
+                                break;
+                            case ConsoleKey.V:
+                                player.Race = vampirePlayer;
+                                playerIsChoosingRace = false;
+                                break;
+                            case ConsoleKey.D:
+                                player.Race = dragonKin;
+                                player.EquippedWeapon.MaxDamage += 10;
+                                player.EquippedWeapon.MinDamage += 10;
+                                playerIsChoosingRace = false;
+                                break;
+                            case ConsoleKey.G:
+                                player.Race = giant;
+                                player.MaxLife += 50;
+                                player.Life += 50;
+                                playerIsChoosingRace = false;
+                                break;
+                            case ConsoleKey.Z:
+                                Console.WriteLine(elf + "\n");
+                                Console.WriteLine(merfolkPlayer + "\n");
+                                Console.WriteLine(dragonKin + "\n");
+                                Console.WriteLine(vampirePlayer + "\n");
+                                Console.WriteLine(giant + "\n");
+                                Console.WriteLine("\n\nPresss any key to continue.\n");
+                                Console.ReadKey();
+                                Console.Clear();
+                                playerIsChoosingRace = true;
+                                break;
+                            default:
+                                Console.WriteLine("Input not understood. Please try again.\n");
+                                playerIsChoosingRace = true;
+                                break;
+                        }
+
+                        #endregion
+                    } while (playerIsChoosingRace);
+                    do
+                    {
+                        Console.WriteLine($"This is your character.\n\nName: {player.Name}\nWeapon: {(player.EquippedWeapon.IsTwoHanded ? $"{player.EquippedWeapon.Name}" : $"{player.EquippedWeapon.Name} and a shield.")}\nRace: {player.Race.RaceType}");
+                        Console.WriteLine("Are these the characteristics you want? (Y/N)");
+                        ConsoleKey playerCreate = Console.ReadKey().Key;
+                        switch (playerCreate)
+                        {
+                            case ConsoleKey.Y:
+                                playerIsConfirmingStats = false;
+                                playerIsCreatingPlayer = false;
+                                break;
+                            case ConsoleKey.N:
+                                playerIsConfirmingStats = false;
+                                playerIsCreatingPlayer = true;
+                                break;
+                            default:
+                                Console.Clear();
+                                Console.WriteLine("Input not understood. Please try again.\n");
+                                playerIsConfirmingStats = true;
+                                break;
+                        }
+                    } while (playerIsConfirmingStats);
+                    if (player.Race.RaceType == RaceType.Elf && player.EquippedWeapon.IsTwoHanded == true)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("\nAn elf cannot use a two-handed weapon! Please choose again.");
+                        playerIsCreatingPlayer = true;
+                        Console.ResetColor();
+                        Console.ReadKey();
+                    }
+                } while (playerIsCreatingPlayer);
+
+                int score = 0;
+                bool playerIsAlive = true;//counter for gameplayloop
+                bool playerIsFighting = true;//counter for the combat loop
+                int lvlUp1 = 0;
+                int lvlUp2 = 0;
+                int lvlUp3 = 0;
+                short potions = 3;
+
+                do//start of gameplay loop
+                {
+                    #region CreateMonsterObjects
+                    //Create Monster objects:
+                    Goblin g1 = new Goblin("Goblin", "Ugly, tiny, fast, and dangerous!", 30, 30, 80, 0, 10, 5, goblin, true);
+                    Goblin g2 = new Goblin("Bugbear", "Hairy goblinoid born for battle and mayhem.", 50, 50, 85, 1, 20, 10, goblin, true);
+                    Goblin g3 = new Goblin("Orc", "Orcs are a brutish, aggressive, ugly, and malevolent.", 70, 70, 90, 2, 35, 15, goblin, true);
+                    Zombie z1 = new Zombie("Zombie", "Falling apart at the seams.", 3, 3, 70, 0, 15, 10, zombie, true);
+                    Zombie z2 = new Zombie("Undead", "Reanimated by supernatural means, technology, or disease.", 4, 4, 75, 0, 25, 15, zombie, true);
+                    Zombie z3 = new Zombie("Redead", "Zombie-like creature living in crypts or dark and haunted places.", 5, 5, 80, 0, 35, 25, zombie, true);
+                    Merfolk m1 = new Merfolk("Merfolk", "Something smells fishy.", 50, 50, 80, 1, 20, 10, merfolkMonster, true);
+                    Merfolk m2 = new Merfolk("Waveraker", "As it thrashes, it creates the sound of thunder.", 70, 70, 85, 2, 35, 20, merfolkMonster, true);
+                    Merfolk m3 = new Merfolk("Whirlthrasher", "Master of waves and crusher of storms.", 90, 90, 90, 3, 55, 35, merfolkMonster, true);
+                    Vampire v1 = new Vampire("Vampire", "He could use some sun.", 40, 40, 95, 1, 30, 20, vampireMonster, true);
+                    Vampire v2 = new Vampire("Sun-Cursed", "Forever locked from the charity of light.", 50, 50, 95, 2, 40, 30, vampireMonster, true);
+                    Vampire v3 = new Vampire("Markov", "A direct descendant of Edgar himself.", 60, 60, 95, 3, 50, 40, vampireMonster, true);
+                    Werewolf w1 = new Werewolf("Werewolf", "Good dog... Bad dog?", 40, 40, 85, 0, 25, 10, werewolf, false);
+                    Werewolf w2 = new Werewolf("Lycan", "A massive warrior, and a monsterous wolf.", 60, 60, 90, 1, 40, 25, werewolf, false);
+                    Werewolf w3 = new Werewolf("Ulrich", "Master of transformation. Only a monster now.", 80, 80, 95, 2, 55, 40, werewolf, true);
+                    #endregion
+                    #region MonserCollection
+                    Monster[] monsters =
+                   {
                     g1, g1, g1, g1, g1,
                     g2, g2,
                     g3,
@@ -324,238 +327,249 @@ namespace Dungeon
                     w2, w2,
                     w3,
                 };
-                //Pick one at random to place in the room.
-                Random rand = new Random();
-                int randomNbr = rand.Next(monsters.Length);
-                Monster monster = monsters[randomNbr];
-                #endregion
-                #region LevelUpLoop
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                switch (score)
-                {
-                    case 3://Level up after 3 monster kills
-                        for (int i = 0; lvlUp1 < 1; lvlUp1++)
-                        {
-                            Console.WriteLine("\nYou leveled up!\nYour maximum life has increased and been refilled!");
-                            player.MaxLife += 50;//Increase their maximum life.
-                            player.Life = player.MaxLife;//Refill their life.
-                            Console.ForegroundColor = ConsoleColor.Blue;
-                            Console.WriteLine($"{player.Name} has {player.Life} life remaining, out of {player.MaxLife} maximum life!");
-                            Console.ReadKey();
-                            Console.ResetColor();
-                        }
-                        break;
-                    case 7://Level up after 6 monster kills
-                        for (int i = 0; lvlUp2 < 1; lvlUp2++)
-                        {
-                            Console.WriteLine("\nYou leveled up!\nYour maximum life has increased and been refilled!");
-                            player.MaxLife += 50;//Increase their maximum life.
-                            player.Life = player.MaxLife;//Refill their life.
-                            Console.ForegroundColor = ConsoleColor.Blue;
-                            Console.WriteLine($"{player.Name} has {player.Life} life remaining, out of {player.MaxLife} maximum life!");
-                            Console.ReadKey();
-                            Console.ResetColor();
-                        }
-                        break;
-                    case 12://Level up after 10 monster kills, and upgrade Equipped Weapon
-                        for (int i = 0; lvlUp3 < 1; lvlUp3++)
-                        {
-                            if (player.EquippedWeapon == sword1)
-                            {
-                                player.EquippedWeapon = sword2;
-                                Console.WriteLine($"\nYou found the {player.EquippedWeapon.Name}!");
-                            }
-                            else if (player.EquippedWeapon == knife1)
-                            {
-                                player.EquippedWeapon = knife2;
-                                Console.WriteLine($"\nYou found the {player.EquippedWeapon.Name}!");
-                            }
-                            else if (player.EquippedWeapon == axe1)
-                            {
-                                player.EquippedWeapon = axe2;
-                                Console.WriteLine($"\nYou found the {player.EquippedWeapon.Name}!");
-                            }
-                            else if (player.EquippedWeapon == bow1)
-                            {
-                                player.EquippedWeapon = bow2;
-                                Console.WriteLine($"\nYou found the {player.EquippedWeapon.Name}!");
-                            }
-                            else if (player.EquippedWeapon == spear1)
-                            {
-                                player.EquippedWeapon = spear2;
-                                Console.WriteLine($"\nYou found the {player.EquippedWeapon.Name}!");
-                            }
-                            else if (player.EquippedWeapon == club1)
-                            {
-                                player.EquippedWeapon = club2;
-                                Console.WriteLine($"\nYou found the {player.EquippedWeapon.Name}!");
-                            }
-                            else if (player.EquippedWeapon == greatAxe1)
-                            {
-                                player.EquippedWeapon = greatAxe2;
-                                Console.WriteLine($"\nYou found the {player.EquippedWeapon.Name}!");
-                            }
-                            else if (player.EquippedWeapon == greatSword1)
-                            {
-                                player.EquippedWeapon = greatSword2;
-                                Console.WriteLine($"\nYou found the {player.EquippedWeapon.Name}!");
-                            }
-                            Console.WriteLine("\nYou leveled up!\nYour maximum life has increased and been refilled!");
-                            player.MaxLife += 50;//Increase their maximum life.
-                            player.Life = player.MaxLife;//Refill their life.
-                            Console.ForegroundColor = ConsoleColor.Blue;
-                            Console.WriteLine($"{player.Name} has {player.Life} life remaining, out of {player.MaxLife} maximum life!");
-                            Console.ReadKey();
-                            Console.ResetColor();
-                        }
-                        break;
-                    case 18:
-                        Console.WriteLine("\nYou leveled up!\nYour maximum life has increased and been refilled!");
-                        player.MaxLife += 50;//Increase their maximum life.
-                        player.Life = player.MaxLife;//Refill their life.
-                        Console.ForegroundColor = ConsoleColor.Blue;
-                        Console.WriteLine($"{player.Name} has {player.Life} life remaining, out of {player.MaxLife} maximum life!");
-                        Console.ReadKey();
-                        Console.ResetColor();
-                        break;
-                    case 25:
-                        Console.WriteLine("\nYou leveled up!\nYour maximum life has increased and been refilled!");
-                        player.MaxLife += 50;//Increase their maximum life.
-                        player.Life = player.MaxLife;//Refill their life.
-                        Console.ForegroundColor = ConsoleColor.Blue;
-                        Console.WriteLine($"{player.Name} has {player.Life} life remaining, out of {player.MaxLife} maximum life!");
-                        Console.ReadKey();
-                        Console.ResetColor();
-                        break;
-                };
-                #endregion
-                Console.Clear();
-                Console.ResetColor();
-                GetRoom();
-                
-
-                #region Menu Loop
-
-                do
-                {
-                    Console.ResetColor();
-                    if (monster.Name == "Orc" || monster.Name == "Undead" || monster.Name == "Ulrich")
+                    //Pick one at random to place in the room.
+                    Random rand = new Random();
+                    int randomNbr = rand.Next(monsters.Length);
+                    Monster monster = monsters[randomNbr];
+                    #endregion
+                    #region LevelUpLoop
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    short level = 1;
+                    switch (score)
                     {
-                        Console.Write("\nYou're fighting an"); Console.ForegroundColor = ConsoleColor.Red; Console.Write(" {0}!\n{1}\n", monster.Name, monster.Description); Console.ResetColor();
-                        Console.WriteLine(monster.Description);
-
-                    }
-                    else
-                    {
-                        Console.Write("\nYou're fighting a"); Console.ForegroundColor = ConsoleColor.Red; Console.Write(" {0}!\n{1}\n", monster.Name, monster.Description); Console.ResetColor();
-
-                    }
-
-                    Console.ResetColor();
-                    playerIsFighting = true;
-                    Console.WriteLine("\nChoose an action:\n" +
-                        "A) Attack\n" +
-                        "R) Run Away\n" +
-                        "H) Heal\n" +
-                        "P) View Player Stats\n" +
-                        "M) View Monster Stats\n" +
-                        "Q) Quit\n");
-
-                    string fightingChoice = Console.ReadLine();
-
-                    Console.Clear();
-
-                    switch (fightingChoice.ToUpper())
-                    {  
-                        case "A":
-                            Combat.DoBattle(player, monster);
-                            //check monster life
-                            if (monster.Life <= 0)
+                        case 3://Level up after 3 monster kills
+                            for (int i = 0; lvlUp1 < 1; lvlUp1++)
                             {
-                                Console.ForegroundColor = ConsoleColor.Magenta;
-                                Console.WriteLine("\nYou killed {0}", monster.Name);
-                                Console.ResetColor();
-                                score++;
-                                Random potRNG = new Random();
-                                int roll = rand.Next(1, 11);
-                                if (roll == 10)
-                                {
-                                    potions++;
-                                    Console.ForegroundColor = ConsoleColor.DarkGreen;
-                                    Console.WriteLine($"{player.Name} found a health potion!");
-                                }
-                                Console.ReadKey();
-                                playerIsFighting = false;
-                            }
-                            break;
-                        case "R":
-                            Console.WriteLine("Running away!");
-                            Console.WriteLine($"{monster.Name} attacks you as you flee!");
-                            Combat.DoAttack(monster, player);
-                            Console.ForegroundColor = ConsoleColor.Blue;
-                            Console.WriteLine($"{player.Name} has {player.Life} life remaining, out of {player.MaxLife} maximum life!");
-                            playerIsFighting = false;
-                            Console.ReadKey();
-                            break;
-                        case "H":
-                            if (player.Life == player.MaxLife)
-                            {
-                                Console.WriteLine("Oops! You are at full HP! You can't use a health potion!");
-                            }
-                            else if (potions <= 0)
-                            {
-                                Console.WriteLine("You are all out of health potions!");
-                            }
-                            else
-                            {
-                                potions--;
-                                player.Life += 50;
-                                Console.ForegroundColor = ConsoleColor.Green;
-                                Console.WriteLine($"{player.Name} drank a health potion and regained 50 life!");
-                                Console.WriteLine($"{potions} health potions left!\n");
+                                level++;
+                                Console.WriteLine("\nYou leveled up!\nYour maximum life has increased and been refilled!");
+                                Console.WriteLine("You are now level " + level);
+                                player.MaxLife += 50;//Increase their maximum life.
+                                player.Life = player.MaxLife;//Refill their life.
                                 Console.ForegroundColor = ConsoleColor.Blue;
-                                Console.WriteLine($"{player.Name} has {player.Life} life remaining, out of {player.MaxLife} maximum life!\n");
+                                Console.WriteLine($"{player.Name} has {player.Life} life remaining, out of {player.MaxLife} maximum life!");
+                                Console.ReadKey();
+                                Console.ResetColor();
+                            }
+                            break;
+                        case 7://Level up after 6 monster kills
+                            for (int i = 0; lvlUp2 < 1; lvlUp2++)
+                            {
+                                level++;
+                                Console.WriteLine("\nYou leveled up!\nYour maximum life has increased and been refilled!");
+                                Console.WriteLine("You are now level " + level);
+                                player.MaxLife += 50;//Increase their maximum life.
+                                player.Life = player.MaxLife;//Refill their life.
+                                Console.ForegroundColor = ConsoleColor.Blue;
+                                Console.WriteLine($"{player.Name} has {player.Life} life remaining, out of {player.MaxLife} maximum life!");
+                                Console.ReadKey();
+                                Console.ResetColor();
+                            }
+                            break;
+                        case 12://Level up after 10 monster kills, and upgrade Equipped Weapon
+                            for (int i = 0; lvlUp3 < 1; lvlUp3++)
+                            {
+                                if (player.EquippedWeapon == sword1)
+                                {
+                                    player.EquippedWeapon = sword2;
+                                    Console.WriteLine($"\nYou found the {player.EquippedWeapon.Name}!");
+                                }
+                                else if (player.EquippedWeapon == knife1)
+                                {
+                                    player.EquippedWeapon = knife2;
+                                    Console.WriteLine($"\nYou found the {player.EquippedWeapon.Name}!");
+                                }
+                                else if (player.EquippedWeapon == axe1)
+                                {
+                                    player.EquippedWeapon = axe2;
+                                    Console.WriteLine($"\nYou found the {player.EquippedWeapon.Name}!");
+                                }
+                                else if (player.EquippedWeapon == bow1)
+                                {
+                                    player.EquippedWeapon = bow2;
+                                    Console.WriteLine($"\nYou found the {player.EquippedWeapon.Name}!");
+                                }
+                                else if (player.EquippedWeapon == spear1)
+                                {
+                                    player.EquippedWeapon = spear2;
+                                    Console.WriteLine($"\nYou found the {player.EquippedWeapon.Name}!");
+                                }
+                                else if (player.EquippedWeapon == club1)
+                                {
+                                    player.EquippedWeapon = club2;
+                                    Console.WriteLine($"\nYou found the {player.EquippedWeapon.Name}!");
+                                }
+                                else if (player.EquippedWeapon == greatAxe1)
+                                {
+                                    player.EquippedWeapon = greatAxe2;
+                                    Console.WriteLine($"\nYou found the {player.EquippedWeapon.Name}!");
+                                }
+                                else if (player.EquippedWeapon == greatSword1)
+                                {
+                                    player.EquippedWeapon = greatSword2;
+                                    Console.WriteLine($"\nYou found the {player.EquippedWeapon.Name}!");
+                                }
+                                level++;
+                                Console.WriteLine("\nYou leveled up!\nYour maximum life has increased and been refilled!");
+                                Console.WriteLine("You are now level " + level);
+                                player.MaxLife += 50;//Increase their maximum life.
+                                player.Life = player.MaxLife;//Refill their life.
+                                Console.ForegroundColor = ConsoleColor.Blue;
+                                Console.WriteLine($"{player.Name} has {player.Life} life remaining, out of {player.MaxLife} maximum life!");
+                                Console.ReadKey();
+                                Console.ResetColor();
+                            }
+                            break;
+                        case 18:
+                            level++;
+                            Console.WriteLine("\nYou leveled up!\nYour maximum life has increased and been refilled!");
+                            Console.WriteLine("You are now level " + level);
+                            player.MaxLife += 50;//Increase their maximum life.
+                            player.Life = player.MaxLife;//Refill their life.
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                            Console.WriteLine($"{player.Name} has {player.Life} life remaining, out of {player.MaxLife} maximum life!");
+                            Console.ReadKey();
+                            Console.ResetColor();
+                            break;
+                        case 25:
+                            level++;
+                            Console.WriteLine("\nYou leveled up!\nYour maximum life has increased and been refilled!");
+                            Console.WriteLine("You are now level " + level);
+                            player.MaxLife += 50;//Increase their maximum life.
+                            player.Life = player.MaxLife;//Refill their life.
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                            Console.WriteLine($"{player.Name} has {player.Life} life remaining, out of {player.MaxLife} maximum life!");
+                            Console.ReadKey();
+                            Console.ResetColor();
+                            break;
+                    };
+                    #endregion
+                    Console.Clear();
+                    Console.ResetColor();
+                    GetRoom();
+
+
+                    #region Menu Loop
+
+                    do
+                    {
+                        Console.ResetColor();
+                        if (monster.Name == "Orc" || monster.Name == "Undead" || monster.Name == "Ulrich")
+                        {
+                            Console.Write("\nYou're fighting an"); Console.ForegroundColor = ConsoleColor.Red; Console.Write(" {0}!\n{1}\n", monster.Name, monster.Description); Console.ResetColor();
+
+                        }
+                        else
+                        {
+                            Console.Write("\nYou're fighting a"); Console.ForegroundColor = ConsoleColor.Red; Console.Write(" {0}!\n{1}\n", monster.Name, monster.Description); Console.ResetColor();
+                        }
+
+                        Console.ResetColor();
+                        playerIsFighting = true;
+                        Console.WriteLine("\nChoose an action:\n" +
+                            "A) Attack\n" +
+                            "R) Run Away\n" +
+                            "H) Heal\n" +
+                            "P) View Player Stats\n" +
+                            "M) View Monster Stats\n" +
+                            "Q) Quit\n");
+
+                        string fightingChoice = Console.ReadLine();
+
+                        Console.Clear();
+
+                        switch (fightingChoice.ToUpper())
+                        {
+                            case "A":
+                                Combat.DoBattle(player, monster);
+                                //check monster life
+                                if (monster.Life <= 0)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Magenta;
+                                    Console.WriteLine("\nYou killed {0}", monster.Name);
+                                    Console.ResetColor();
+                                    score++;
+                                    Random potRNG = new Random();
+                                    int roll = rand.Next(1, 11);
+                                    if (roll == 10)
+                                    {
+                                        potions++;
+                                        Console.ForegroundColor = ConsoleColor.DarkGreen;
+                                        Console.WriteLine($"{player.Name} found a health potion!");
+                                    }
+                                    Console.ReadKey();
+                                    playerIsFighting = false;
+                                }
+                                break;
+                            case "R":
+                                Console.WriteLine("Running away!");
+                                Console.WriteLine($"{monster.Name} attacks you as you flee!");
                                 Combat.DoAttack(monster, player);
                                 Console.ForegroundColor = ConsoleColor.Blue;
                                 Console.WriteLine($"{player.Name} has {player.Life} life remaining, out of {player.MaxLife} maximum life!");
-                                Console.WriteLine($"{monster.Name} has {monster.Life} life remaining, out of {monster.MaxLife} maximum life!");
-                            }
-                            break;
-                        case "P":
-                            Console.WriteLine($"{player}\nHealth Potions: {potions}");
-                            break;
-                        case "M":
-                            Console.WriteLine(monster);
-                            break;
-                        case "Q":
+                                playerIsFighting = false;
+                                Console.ReadKey();
+                                break;
+                            case "H":
+                                if (player.Life == player.MaxLife)
+                                {
+                                    Console.WriteLine("Oops! You are at full HP! You can't use a health potion!");
+                                }
+                                else if (potions <= 0)
+                                {
+                                    Console.WriteLine("You are all out of health potions!");
+                                }
+                                else
+                                {
+                                    potions--;
+                                    player.Life += 50;
+                                    Console.ForegroundColor = ConsoleColor.Green;
+                                    Console.WriteLine($"{player.Name} drank a health potion and regained 50 life!");
+                                    Console.WriteLine($"{potions} health potions left!\n");
+                                    Console.ForegroundColor = ConsoleColor.Blue;
+                                    Console.WriteLine($"{player.Name} has {player.Life} life remaining, out of {player.MaxLife} maximum life!\n");
+                                    Combat.DoAttack(monster, player);
+                                    Console.ForegroundColor = ConsoleColor.Blue;
+                                    Console.WriteLine($"{player.Name} has {player.Life} life remaining, out of {player.MaxLife} maximum life!");
+                                    Console.WriteLine($"{monster.Name} has {monster.Life} life remaining, out of {monster.MaxLife} maximum life!");
+                                }
+                                break;
+                            case "P":
+                                Console.WriteLine($"{player}\nHealth Potions: {potions}\nLevel: {level}\n");
+                                Console.ForegroundColor = ConsoleColor.Yellow;
+                                Console.WriteLine($"Score: {score}");
+                                break;
+                            case "M":
+                                Console.WriteLine(monster);
+                                break;
+                            case "Q":
+                                playerIsFighting = false;
+                                playerIsAlive = false;
+                                break;
+                            default:
+                                Console.WriteLine("Input invalid. Please type a letter from the Menu below and press Enter.");
+                                break;
+                        }
+
+                        #region Check player life
+
+                        if (player.Life <= 0)
+                        {
+                            Console.Clear();
+                            Console.ForegroundColor = ConsoleColor.Blue; Console.Write(player.Name); Console.ForegroundColor = ConsoleColor.Red; Console.Write(" has died!"); Console.ResetColor();
+                            Thread.Sleep(1000);
                             playerIsFighting = false;
                             playerIsAlive = false;
-                            break;
-                        default:
-                            Console.WriteLine("Input invalid. Please type a letter from the Menu below and press Enter.");
-                            break;
-                    }
+                        }
+                        #endregion
 
-                    #region Check player life
+                    } while (playerIsFighting);
 
-                    if (player.Life <= 0)
-                    {
-                        Console.Clear();
-                        Console.ForegroundColor = ConsoleColor.Blue; Console.Write(player.Name); Console.ForegroundColor = ConsoleColor.Red; Console.Write(" has died!"); Console.ResetColor();
-                        Thread.Sleep(1000);
-                        playerIsFighting = false;
-                        playerIsAlive = false;
-                    }
                     #endregion
+                } while (playerIsAlive);
 
-                } while (playerIsFighting);
-
-                #endregion
-            } while (playerIsAlive);
-
-            Console.Clear();
-            Console.ForegroundColor = ConsoleColor.DarkRed;
-            Console.WriteLine(@"        
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine(@"        
                                         ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼
                                         ███▀▀▀██┼███▀▀▀███┼███▀█▄█▀███┼██▀▀▀
                                         ██┼┼┼┼██┼██┼┼┼┼┼██┼██┼┼┼█┼┼┼██┼██┼┼┼
@@ -581,11 +595,36 @@ namespace Dungeon
                                         ┼┼┼┼┼┼┼┼▀▀██┼┼┼┼┼┼┼┼┼┼┼██▀▀┼┼┼┼┼┼┼┼┼
                                         ┼┼┼┼┼┼┼┼┼┼▀▀┼┼┼┼┼┼┼┼┼┼┼▀▀┼┼┼┼┼┼┼┼┼┼┼
                                         ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼");
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("Press any key to view your score.");
-            Console.ReadKey();
-            Console.WriteLine("Score: {0}", score);
-            Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Score: {0}", score);
+                Console.ResetColor();
+                Console.WriteLine("Press any key to continue.");
+                Console.ReadKey();
+                Console.Clear();
+                Console.WriteLine("Do you want to play again? Y/N");
+                ConsoleKey playerPlayingAgain = Console.ReadKey().Key;
+                bool playerIsChoosingToPlayAgain = true;
+                do
+                {
+                    switch (playerPlayingAgain)
+                    {
+                        case ConsoleKey.Y:
+                            playerWantsToPlay = true;
+                            playerIsChoosingToPlayAgain = false;
+                            break;
+                        case ConsoleKey.N:
+                            playerWantsToPlay = false;
+                            playerIsChoosingToPlayAgain = false;
+                            break;
+                        default:
+                            Console.WriteLine("Sorry, input not understood.");
+                            playerIsChoosingToPlayAgain = true;
+                            break;
+                    }
+                } while (playerIsChoosingToPlayAgain);
+                
+            } while (playerWantsToPlay);
+            
 
         }//end Main()
 
