@@ -73,61 +73,136 @@ namespace Dungeon_Library
             }
         }//end DoAttack()
 
+
+
         public static void DoBattle(Player player, Monster monster)
         {
-            if (monster.Race.RaceType == RaceType.Goblin)
+            if (player.EquippedWeapon.Name == "Assassin's Daggers" || player.EquippedWeapon.Name == "Shadowstep Daggers")
             {
-                DoAttack(monster, player);
-
-                if (player.Life > 0)
-                {
-                    DoAttack(player, monster);
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.WriteLine($"{player.Name} has {player.Life} life remaining, out of {player.MaxLife} maximum life!");
-                }
-                if (monster.Life > 0)
-                {
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.WriteLine($"{monster.Name} has {monster.Life} life remaining, out of {monster.MaxLife} maximum life!");
-                }
-                if (player.Life <= 0)
-                {
-                    Console.WriteLine($"{player.Name} has died!");
-                }
-                Console.ResetColor();
-            }//end if checking goblin
-            else
-            {
-                DoAttack(player, monster);
-
-                if (monster.Life > 0)
+                if (monster.Race.RaceType == RaceType.Goblin)
                 {
                     DoAttack(monster, player);
-                }
-                if (player.Life > 0)
-                {
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.WriteLine($"{player.Name} has {player.Life} life remaining, out of {player.MaxLife} maximum life!");
-                }
-                else
-                {
-                    Console.WriteLine($"{player.Name} has died!");
-                }
-                if (monster.Life > 0)
-                {
-                    if (monster.Race.RaceType == RaceType.Zombie)
+
+                    if (player.Life > 0)
                     {
+                        DoAttack(player, monster);
+                        if (monster.Life <= 0)
+                        {
+
+                        }
+                        else
+                        {
+                            DoAttack(player, monster);
+                        }
                         Console.ForegroundColor = ConsoleColor.Blue;
-                        Console.WriteLine($"{monster.Name} has {monster.Life} limbs remaining, out of {monster.MaxLife} maximum limbs!");
+                        Console.WriteLine($"{player.Name} has {player.Life} life remaining, out of {player.MaxLife} maximum life!");
                     }
-                    else
+                    if (monster.Life > 0)
                     {
                         Console.ForegroundColor = ConsoleColor.Blue;
                         Console.WriteLine($"{monster.Name} has {monster.Life} life remaining, out of {monster.MaxLife} maximum life!");
                     }
-                }
-                Console.ResetColor();
-            }//end Else Race Check
+                    if (player.Life <= 0)
+                    {
+                        Console.WriteLine($"{player.Name} has died!");
+                    }
+                    Console.ResetColor();
+                }//end if checking goblin
+                else
+                {
+                    DoAttack(player, monster);
+                    if (monster.Life <= 0)
+                    {
+
+                    }
+                    else
+                    {
+                        DoAttack(player, monster);
+                    }
+                    if (monster.Life > 0)
+                    {
+                        DoAttack(monster, player);
+                    }
+                    if (player.Life > 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.WriteLine($"{player.Name} has {player.Life} life remaining, out of {player.MaxLife} maximum life!");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"{player.Name} has died!");
+                    }
+                    if (monster.Life > 0)
+                    {
+                        if (monster.Race.RaceType == RaceType.Zombie)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                            Console.WriteLine($"{monster.Name} has {monster.Life} limbs remaining, out of {monster.MaxLife} maximum limbs!");
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                            Console.WriteLine($"{monster.Name} has {monster.Life} life remaining, out of {monster.MaxLife} maximum life!");
+                        }
+                    }
+                    Console.ResetColor();
+                }//end Else Race Check
+            }//end Dagger Check
+            else
+            {
+                if (monster.Race.RaceType == RaceType.Goblin)
+                {
+                    DoAttack(monster, player);
+
+                    if (player.Life > 0)
+                    {
+                        DoAttack(player, monster);
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.WriteLine($"{player.Name} has {player.Life} life remaining, out of {player.MaxLife} maximum life!");
+                    }
+                    if (monster.Life > 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.WriteLine($"{monster.Name} has {monster.Life} life remaining, out of {monster.MaxLife} maximum life!");
+                    }
+                    if (player.Life <= 0)
+                    {
+                        Console.WriteLine($"{player.Name} has died!");
+                    }
+                    Console.ResetColor();
+                }//end if checking goblin
+                else
+                {
+                    DoAttack(player, monster);
+                    if (monster.Life > 0)
+                    {
+                        DoAttack(monster, player);
+                    }
+                    if (player.Life > 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.WriteLine($"{player.Name} has {player.Life} life remaining, out of {player.MaxLife} maximum life!");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"{player.Name} has died!");
+                    }
+                    if (monster.Life > 0)
+                    {
+                        if (monster.Race.RaceType == RaceType.Zombie)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                            Console.WriteLine($"{monster.Name} has {monster.Life} limbs remaining, out of {monster.MaxLife} maximum limbs!");
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                            Console.WriteLine($"{monster.Name} has {monster.Life} life remaining, out of {monster.MaxLife} maximum life!");
+                        }
+                    }
+                    Console.ResetColor();
+                }//end Else Race Check
+            }
         }//end of DoBattle()
     }//end combat class
 }//end namespace

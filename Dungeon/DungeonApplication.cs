@@ -62,7 +62,7 @@ namespace Dungeon
             #region CreateWeaponObjects
             //Create Base Weapon Objects
             Weapon sword1 = new Weapon("Knight's Broadsword", WeaponType.Sword, 25, 15, 30, false);
-            Weapon knife1 = new Weapon("Assassin's Dagger", WeaponType.Knife, 20, 15, 40, false);
+            Weapon knife1 = new Weapon("Assassin's Daggers", WeaponType.Knife, 20, 15, 40, false);
             Weapon axe1 = new Weapon("Lumber Axe", WeaponType.Axe, 35, 20, 20, false);
             Weapon bow1 = new Weapon("Long Bow", WeaponType.Bow, 45, 40, 30, true);
             Weapon spear1 = new Weapon("Guard's Spear", WeaponType.Spear, 60, 50, 20, true);
@@ -71,7 +71,7 @@ namespace Dungeon
             Weapon greatSword1 = new Weapon("Colossal Sword", WeaponType.GreatSword, 60, 45, 30, true);
             //Create Upgraded Weapon Objects
             Weapon sword2 = new Weapon("Master Sword", WeaponType.Sword, 35, 25, 35, false);
-            Weapon knife2 = new Weapon("Shadowstep Dagger", WeaponType.Knife, 30, 25, 45, false);
+            Weapon knife2 = new Weapon("Shadowstep Daggers", WeaponType.Knife, 30, 25, 45, false);
             Weapon axe2 = new Weapon("Pic's Axe", WeaponType.Axe, 45, 30, 25, false);
             Weapon bow2 = new Weapon("Colossal Bow", WeaponType.Bow, 60, 55, 35, true);
             Weapon spear2 = new Weapon("Neptune's Trident", WeaponType.Spear, 75, 65, 25, true);
@@ -119,7 +119,7 @@ namespace Dungeon
                     {
                         #region Selecting Weapon
                         Console.WriteLine($"Your champion's name is {player.Name}.");
-                        Console.WriteLine("\nChoose your weapon:\n" + "(S) Sword\n" + "(K) Knife\n" + "(A) Axe\n" + "(B) Bow\n" + "(P) Spear\n" + "(C) Club\n" + "(X) GreatAxe\n" + "(W) GreatSword\n" + "(Z) Show Weapon Descriptions");
+                        Console.WriteLine("\nChoose your weapon:\n" + "(S) Sword\n" + "(D) Dual Daggers\n" + "(A) Axe\n" + "(B) Bow\n" + "(P) Spear\n" + "(C) Club\n" + "(X) GreatAxe\n" + "(W) GreatSword\n" + "(Z) Show Weapon Descriptions");
 
                         ConsoleKey userKey = Console.ReadKey().Key;
                         Console.Clear();
@@ -129,7 +129,7 @@ namespace Dungeon
                                 player.EquippedWeapon = sword1;
                                 playerIsChoosingWeapon = false;
                                 break;
-                            case ConsoleKey.K:
+                            case ConsoleKey.D:
                                 player.EquippedWeapon = knife1;
                                 playerIsChoosingWeapon = false;
                                 break;
@@ -184,7 +184,7 @@ namespace Dungeon
                         #region Selecting Race
                         Console.WriteLine($"Your champion's name is {player.Name}");
                         Console.WriteLine($"You have chosen {player.EquippedWeapon.Name}");
-                        if (player.EquippedWeapon.IsTwoHanded == false)
+                        if (player.EquippedWeapon.IsTwoHanded == false && player.EquippedWeapon.Name != "Assassin's Daggers")
                         {
                             Console.WriteLine("Your weapon only requires 1 hand. You will be given a shield for your other hand. This will increase your Armor Class by 1.");
                             player.Block++;
@@ -270,7 +270,7 @@ namespace Dungeon
                                 break;
                         }
                     } while (playerIsConfirmingStats);
-                    if (player.Race.RaceType == RaceType.Elf && player.EquippedWeapon.IsTwoHanded == true)
+                    if (player.Race.RaceType == RaceType.Elf && player.EquippedWeapon.IsTwoHanded == true && player.EquippedWeapon.Name != "Assassin's Daggers")
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nAn elf cannot use a two-handed weapon! Please choose again.");
