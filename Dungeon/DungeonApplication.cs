@@ -11,19 +11,19 @@ namespace Dungeon
         {
             #region Intro
             Console.WriteLine(@"Loading...10%█▒▒▒▒▒▒▒▒▒");
-            Thread.Sleep(1);//TODO set to 1000
+            Thread.Sleep(1000);
             Console.Clear();
             Console.WriteLine(@"Loading...30%███▒▒▒▒▒▒▒");
-            Thread.Sleep(1);
+            Thread.Sleep(1000);
             Console.Clear();
             Console.WriteLine(@"Loading...50%█████▒▒▒▒▒");
-            Thread.Sleep(1);
+            Thread.Sleep(1000);
             Console.Clear();
             Console.WriteLine(@"Loading...80%███████▒▒▒");
-            Thread.Sleep(1);
+            Thread.Sleep(1000);
             Console.Clear();
             Console.WriteLine(@"Loading...100%██████████");
-            Thread.Sleep(5);//TODO set to 500
+            Thread.Sleep(500);
             Console.Clear();
             Console.WriteLine("----==== Welcome to the Magic Dungeon ====----");
             Console.WriteLine(@"     
@@ -84,7 +84,7 @@ namespace Dungeon
             
             Race elf = new Race(RaceType.Elf, "Elves are small and can only use one-handed weapons. +5 Min and Max damage and +5% HitChance.", "Skulk");
             Race dragonKin = new Race(RaceType.Draconoid, "You use the power of the dragons to imbue your weapon with flames. +10 Min and Max damage", "Firebreathing");
-            Race merfolkPlayer = new Race(RaceType.Merfolk, "If you fight again another merfolk, attacks will never miss and will not be reduced by armor", "Islandwalk");
+            Race merfolkPlayer = new Race(RaceType.Merfolk, "If you fight against another merfolk, attacks will never miss and will not be reduced by armor", "Islandwalk");
             Race giant = new Race(RaceType.Goliath, "You are big. +50 Maximum life.", "Fortified");
             Race vampirePlayer = new Race(RaceType.Vampire, "Heal 10% of the damage you deal.", "Lifelink.");
             //Create Race Objects for monsters
@@ -97,6 +97,7 @@ namespace Dungeon
             #endregion
             //Create Player Object
             Player player = new Player("", 50, 0, 100, 100, elf, sword1);
+
             #region Counters for menu loops
             bool playerIsChoosingWeapon = true;
             bool playerIsCreatingPlayer = true;
@@ -250,7 +251,7 @@ namespace Dungeon
                     } while (playerIsChoosingRace);
                     do
                     {
-                        Console.WriteLine($"This is your character.\n\nName: {player.Name}\nWeapon: {(player.EquippedWeapon.IsTwoHanded ? $"{player.EquippedWeapon.Name}" : $"{player.EquippedWeapon.Name} and a shield.")}\nRace: {player.Race.RaceType}");
+                        Console.WriteLine($"This is your character.\n\nName: {player.Name}\nWeapon: {(player.EquippedWeapon.IsTwoHanded == true || player.EquippedWeapon.Name == "Assassin's Daggers" ? $"{player.EquippedWeapon.Name}" : $"{player.EquippedWeapon.Name} and a shield.")}\nRace: {player.Race.RaceType}");
                         Console.WriteLine("Are these the characteristics you want? (Y/N)");
                         ConsoleKey playerCreate = Console.ReadKey().Key;
                         switch (playerCreate)
@@ -258,6 +259,14 @@ namespace Dungeon
                             case ConsoleKey.Y:
                                 playerIsConfirmingStats = false;
                                 playerIsCreatingPlayer = false;
+                                if (player.Race.RaceType == RaceType.Elf && player.EquippedWeapon.IsTwoHanded == true && player.EquippedWeapon.Name != "Assassin's Daggers")
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("\nAn elf cannot use a two-handed weapon! Please try again.");
+                                    playerIsCreatingPlayer = true;
+                                    Console.ResetColor();
+                                    Console.ReadKey();
+                                }
                                 break;
                             case ConsoleKey.N:
                                 playerIsConfirmingStats = false;
@@ -270,14 +279,7 @@ namespace Dungeon
                                 break;
                         }
                     } while (playerIsConfirmingStats);
-                    if (player.Race.RaceType == RaceType.Elf && player.EquippedWeapon.IsTwoHanded == true && player.EquippedWeapon.Name != "Assassin's Daggers")
-                    {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("\nAn elf cannot use a two-handed weapon! Please choose again.");
-                        playerIsCreatingPlayer = true;
-                        Console.ResetColor();
-                        Console.ReadKey();
-                    }
+                    
                 } while (playerIsCreatingPlayer);
 
                 int score = 0;
@@ -501,8 +503,8 @@ namespace Dungeon
                                 }
                                 break;
                             case "R":
-                                Console.WriteLine("Running away!");
-                                Console.WriteLine($"{monster.Name} attacks you as you flee!");
+                                Console.WriteLine("Running away!\n");
+                                Console.WriteLine($"{monster.Name} attacks you as you flee!\n");
                                 Combat.DoAttack(monster, player);
                                 Console.ForegroundColor = ConsoleColor.Blue;
                                 Console.WriteLine($"{player.Name} has {player.Life} life remaining, out of {player.MaxLife} maximum life!");
@@ -596,16 +598,17 @@ namespace Dungeon
                                         ┼┼┼┼┼┼┼┼┼┼▀▀┼┼┼┼┼┼┼┼┼┼┼▀▀┼┼┼┼┼┼┼┼┼┼┼
                                         ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼");
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("Score: {0}", score);
+                Console.WriteLine("Score: {0}\n", score);
                 Console.ResetColor();
                 Console.WriteLine("Press any key to continue.");
                 Console.ReadKey();
                 Console.Clear();
-                Console.WriteLine("Do you want to play again? Y/N");
-                ConsoleKey playerPlayingAgain = Console.ReadKey().Key;
+                
                 bool playerIsChoosingToPlayAgain = true;
                 do
                 {
+                    Console.WriteLine("Do you want to play again? Y/N");
+                    ConsoleKey playerPlayingAgain = Console.ReadKey().Key;
                     switch (playerPlayingAgain)
                     {
                         case ConsoleKey.Y:
@@ -624,7 +627,8 @@ namespace Dungeon
                 } while (playerIsChoosingToPlayAgain);
                 
             } while (playerWantsToPlay);
-            
+            Console.Clear();
+            Console.WriteLine("Thank you for playing!\n\n" + "Press any key to exit.");
 
         }//end Main()
 

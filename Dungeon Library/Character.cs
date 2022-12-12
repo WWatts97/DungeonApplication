@@ -4,8 +4,21 @@
     {
         //fields
         private int _life;
+        private string _name;
         //props
-        public string Name { get; set; }
+        public string Name { get { return _name; } 
+            set 
+            {
+                if (value.Count() > 1)
+                {
+                    _name = value;
+                }
+                else
+                {
+                    _name = "Mystery Man";
+                }
+            } 
+        }
         public int HitChance { get; set; }
         public int Block { get; set; }
         public int MaxLife { get; set; }
